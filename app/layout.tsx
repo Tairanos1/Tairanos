@@ -13,10 +13,39 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tairanos - AI Automation Platform",
-  description: "AI Automation Platform for Businesses",
+  title: "Tairanos - AI Automation Platform for Businesses",
+  description:
+    "Tairanos helps businesses automate customer support, websites, AI chatbots and business workflows using modern artificial intelligence.",
+  keywords: [
+    "Tairanos",
+    "AI Automation",
+    "AI Automation Platform",
+    "AI Chatbot",
+    "Business Automation",
+    "Customer Support Automation",
+    "AI Solutions for Businesses",
+  ],
+  authors: [{ name: "Tairanos" }],
+  creator: "Tairanos",
+  publisher: "Tairanos",
+  metadataBase: new URL("https://tairanos.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Tairanos - AI Automation Platform for Businesses",
+    description:
+      "Automate customer support, websites, AI chatbots and business workflows with Tairanos.",
+    url: "https://tairanos.vercel.app",
+    siteName: "Tairanos",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   verification: {
-    google: "wBxDxHBillNbAvLxOarXgwh6ZiJRapGp6wKQK243vYg",
+    google: "wBxDxHBillNbAvLxOarXgwh6ZiJRapGp6wKQ243vYg",
   },
 };
 
