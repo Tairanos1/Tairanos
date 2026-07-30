@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tairanos - AI Automation Platform for Businesses",
+  title: "Tairanos | AI Automation & Business Solutions",
   description:
     "Tairanos helps businesses automate customer support, websites, AI chatbots and business workflows using modern artificial intelligence.",
   keywords: [
