@@ -8,8 +8,8 @@ export default function Navbar() {
   <Image
     src="/tairanos-logo.png"
     alt="Tairanos Logo"
-    width={150}
-    height={45}
+    width={180}
+    height={55}
     className="object-contain"
   />
 </div>
