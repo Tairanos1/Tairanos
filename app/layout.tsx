@@ -18,8 +18,13 @@ export const metadata: Metadata = {
     "Tairanos helps businesses automate customer support, websites, AI chatbots and business workflows using modern artificial intelligence.",
   
   icons: {
-    icon: "/tairanos-logo.png",
-  },
+  icon: [
+    {
+      url: "/tairanos-logo.png",
+      type: "image/png",
+    },
+  ],
+},
   keywords: [
     "Tairanos",
     "AI Automation",
