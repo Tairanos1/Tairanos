@@ -121,7 +121,7 @@ export default function RootLayout({
         <ScrollProgress />
         <BackToTop />
         <WhatsAppButton />
-        <AIChat />
+        {/* <AIChat /> */}
 
         {children}
       </body>
