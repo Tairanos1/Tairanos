@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       subject: `New Contact from ${name}`,
       replyTo: email,
       html: `
-        <h2>New Contact Form Submission</h2>
+        <h2>📩 New Contact Form Submission</h2>
 
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
@@ -23,11 +23,22 @@ export async function POST(req: Request) {
       `,
     });
 
-    return NextResponse.json(data);
+    return NextResponse.json({
+      success: true,
+      message: "✅ Your message has been sent successfully!",
+      emailId: data.data?.id,
+    });
   } catch (error) {
+    console.error("Contact API Error:", error);
+
     return NextResponse.json(
-      { error: "Email failed to send." },
-      { status: 500 }
+      {
+        success: false,
+        message: "❌ Failed to send your message. Please try again later.",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }
