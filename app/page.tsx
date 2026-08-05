@@ -1,3 +1,5 @@
+import Portfolio from "./components/Portfolio";
+import Stats from "./components/Stats";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -12,8 +14,10 @@ export default function Home() {
     <main className="min-h-screen bg-[#0B1220] text-white">
       <Navbar />
       <Hero />
+      <Stats />
       <Services /> 
       <Features />
+      <Portfolio />
        <Pricing />
        <Testimonials />
        <FAQ />
