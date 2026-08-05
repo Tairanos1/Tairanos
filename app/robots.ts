@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://tairanos.vercel.app/sitemap.xml",
+    sitemap: "https://www.tairanos.com/sitemap.xml",
+    host: "https://www.tairanos.com",
   };
 }
