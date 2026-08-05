@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@google/genai": "^2.15.0",
     "aos": "^2.3.4",
     "next": "^15.5.22",
     "openai": "^7.3.0",

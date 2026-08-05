@@ -10,7 +10,6 @@ import {
   FaChartLine,
 } from "react-icons/fa";
 
-import { getBotReply } from "../lib/matcher";
 
 type Message = {
   role: "user" | "assistant";
@@ -191,29 +190,49 @@ return;
 }
     setTyping(true);
 
-    setTimeout(() => {
-      const history = messages.map((msg) => msg.content);
+    try {
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      message: text,
+      history: messages,
+    }),
+  });
 
-      const reply = getBotReply(
-            text,
-            history
-   );
-   if (
-  reply.toLowerCase().includes("may i know your name")
-) {
-  setLeadStep("name");
+  const data = await response.json();
+
+  const reply =
+    data.reply || "Sorry, I couldn't generate a response.";
+
+  if (
+    reply.toLowerCase().includes("may i know your name")
+  ) {
+    setLeadStep("name");
+  }
+
+  setMessages((prev) => [
+    ...prev,
+    {
+      role: "assistant",
+      content: reply,
+    },
+  ]);
+} catch (error) {
+  console.error(error);
+
+  setMessages((prev) => [
+    ...prev,
+    {
+      role: "assistant",
+      content: "⚠️ AI service is temporarily unavailable.",
+    },
+  ]);
+} finally {
+  setTyping(false);
 }
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: reply,
-        },
-      ]);
-
-      setTyping(false);
-    }, 800);
   };
 
   const quickAsk = (text: string) => {
