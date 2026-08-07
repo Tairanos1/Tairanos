@@ -1,42 +1,59 @@
-import { FaCheckCircle, FaStar } from "react-icons/fa";
+import { FaCheckCircle, FaStar, FaGlobe } from "react-icons/fa";
 
 export default function Pricing() {
   const plans = [
     {
       name: "Starter",
-      price: "৳9,999",
-      desc: "Perfect for startups and small businesses.",
+      price: "$99+",
+      desc: "Perfect for individuals, startups and small businesses.",
       popular: false,
       features: [
-        "Modern Business Website",
-        "AI Chatbot Setup",
-        "Email Support",
+        "Business Website",
+        "Basic AI Chatbot",
         "Mobile Responsive",
+        "Basic SEO Setup",
+        "Email Support",
       ],
     },
     {
       name: "Business",
-      price: "৳24,999",
-      desc: "Best choice for growing businesses.",
+      price: "$299+",
+      desc: "Best for growing businesses that need automation and digital growth.",
       popular: true,
       features: [
         "Premium Website",
-        "AI Automation",
+        "AI Chatbot",
+        "Business Automation",
         "SEO Optimization",
+        "Content & Marketing Support",
         "Priority Support",
-        "Analytics Dashboard",
+      ],
+    },
+    {
+      name: "Professional",
+      price: "$599+",
+      desc: "Advanced digital solutions for businesses ready to scale.",
+      popular: false,
+      features: [
+        "Advanced AI Solutions",
+        "AI Voice Agent",
+        "Advanced Automation",
+        "SEO & Keyword Research",
+        "Custom Digital Solutions",
+        "Dedicated Support",
       ],
     },
     {
       name: "Enterprise",
       price: "Custom",
-      desc: "Tailored AI solutions for large companies.",
+      desc: "Tailored solutions for companies with advanced requirements.",
       popular: false,
       features: [
-        "Custom AI Solution",
-        "AI Voice Agent",
-        "Advanced Automation",
-        "Dedicated Support",
+        "Custom AI Systems",
+        "Advanced AI Automation",
+        "AI Voice Solutions",
+        "Custom Web Applications",
+        "Dedicated Development",
         "Unlimited Scalability",
       ],
     },
@@ -45,9 +62,15 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="bg-[#08101f] py-24 text-white"
+      className="relative overflow-hidden bg-[#08101f] py-24 text-white"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      {/* Background Glow */}
+
+      <div className="absolute -left-40 top-40 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
+
+      <div className="absolute -right-40 bottom-20 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
 
         {/* Heading */}
 
@@ -55,26 +78,34 @@ export default function Pricing() {
           className="mx-auto max-w-3xl text-center"
           data-aos="fade-up"
         >
-          <span className="inline-block rounded-full border border-cyan-500/40 bg-cyan-500/10 px-5 py-2 text-sm text-cyan-400">
-            Pricing Plans
+          <span className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-5 py-2 text-sm font-medium text-cyan-400">
+            <FaGlobe />
+            Global Pricing
           </span>
 
-          <h2 className="mt-6 text-4xl font-extrabold md:text-5xl">
-            Choose The Perfect
+          <h2 className="mt-6 text-4xl font-extrabold leading-tight md:text-5xl">
+            Simple & Flexible
             <br />
+
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Plan For Your Business
+              Pricing For Everyone
             </span>
           </h2>
 
-          <p className="mt-6 text-lg text-gray-300">
-            Flexible pricing designed for startups, growing businesses and enterprise companies.
+          <p className="mt-6 text-lg leading-8 text-gray-300">
+            Flexible digital services for startups, entrepreneurs,
+            professionals and businesses worldwide.
+          </p>
+
+          <p className="mt-4 text-sm leading-6 text-gray-500">
+            Prices shown are starting estimates. Final pricing depends on
+            project scope, complexity and requirements.
           </p>
         </div>
 
-        {/* Cards */}
+        {/* Pricing Cards */}
 
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
+        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
 
           {plans.map((plan, index) => (
 
@@ -83,57 +114,97 @@ export default function Pricing() {
               data-aos="zoom-in-up"
               data-aos-delay={index * 100}
               className={`
-              relative
-              overflow-hidden
-              rounded-3xl
-              border
-              p-8
-              transition-all
-              duration-300
-              backdrop-blur-xl
-              hover:-translate-y-3
-              ${
-                plan.popular
-                  ? "border-cyan-500 bg-cyan-500/10 shadow-[0_0_40px_rgba(34,211,238,0.25)]"
-                  : "border-white/10 bg-white/5 hover:border-cyan-500 hover:bg-white/10"
-              }
+                group
+                relative
+                flex
+                flex-col
+                overflow-hidden
+                rounded-3xl
+                border
+                p-8
+                transition-all
+                duration-500
+                backdrop-blur-xl
+                hover:-translate-y-3
+                ${
+                  plan.popular
+                    ? `
+                      border-cyan-500
+                      bg-cyan-500/10
+                      shadow-[0_0_45px_rgba(34,211,238,0.20)]
+                    `
+                    : `
+                      border-white/10
+                      bg-white/5
+                      hover:border-cyan-500/50
+                      hover:bg-white/[0.08]
+                      hover:shadow-[0_0_40px_rgba(6,182,212,.12)]
+                    `
+                }
               `}
             >
 
+              {/* Card Glow */}
+
+              <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl transition duration-500 group-hover:bg-cyan-500/20" />
+
+              {/* Popular Badge */}
+
               {plan.popular && (
                 <div className="absolute right-5 top-5">
-                  <span className="flex items-center gap-2 rounded-full bg-cyan-500 px-4 py-1 text-xs font-bold text-black">
+
+                  <span className="flex items-center gap-2 rounded-full bg-cyan-500 px-4 py-1.5 text-xs font-bold text-black shadow-lg">
                     <FaStar />
                     MOST POPULAR
                   </span>
+
                 </div>
               )}
 
-              <div className="mb-6">
+              {/* Plan Name */}
+
+              <div className="relative">
+
                 <h3 className="text-2xl font-bold">
                   {plan.name}
                 </h3>
 
-                <div className="mt-4 text-4xl font-extrabold text-cyan-400">
-                  {plan.price}
+                {/* Price */}
+
+                <div className="mt-5 flex items-end gap-2">
+
+                  <span className="text-4xl font-extrabold text-cyan-400">
+                    {plan.price}
+                  </span>
+
                 </div>
 
-                <p className="mt-4 text-gray-300">
+                {/* Description */}
+
+                <p className="mt-4 min-h-[80px] text-sm leading-7 text-gray-300">
                   {plan.desc}
                 </p>
+
               </div>
 
-              <ul className="space-y-4">
+              {/* Divider */}
+
+              <div className="my-7 border-t border-white/10" />
+
+              {/* Features */}
+
+              <ul className="flex-1 space-y-4">
 
                 {plan.features.map((feature) => (
 
                   <li
                     key={feature}
-                    className="flex items-center gap-3"
+                    className="flex items-start gap-3"
                   >
-                    <FaCheckCircle className="text-cyan-400" />
 
-                    <span className="text-gray-300">
+                    <FaCheckCircle className="mt-1 shrink-0 text-cyan-400" />
+
+                    <span className="text-sm leading-6 text-gray-300">
                       {feature}
                     </span>
 
@@ -143,29 +214,76 @@ export default function Pricing() {
 
               </ul>
 
-              <button
+              {/* CTA */}
+
+              <a
+                href="/#contact"
                 className={`
-                mt-10
-                w-full
-                rounded-xl
-                py-4
-                font-semibold
-                transition-all
-                duration-300
-                hover:scale-105
-                ${
-                  plan.popular
-                    ? "bg-cyan-500 text-black hover:bg-cyan-400"
-                    : "bg-blue-600 hover:bg-blue-700"
-                }
+                  mt-10
+                  flex
+                  w-full
+                  items-center
+                  justify-center
+                  rounded-xl
+                  py-4
+                  font-semibold
+                  transition-all
+                  duration-300
+                  hover:scale-[1.03]
+                  ${
+                    plan.popular
+                      ? `
+                        bg-cyan-500
+                        text-black
+                        hover:bg-cyan-400
+                        hover:shadow-[0_0_25px_rgba(34,211,238,.35)]
+                      `
+                      : `
+                        bg-blue-600
+                        text-white
+                        hover:bg-blue-700
+                        hover:shadow-[0_0_25px_rgba(37,99,235,.30)]
+                      `
+                  }
                 `}
               >
-                Get Started
-              </button>
+                Get Started →
+              </a>
 
             </div>
 
           ))}
+
+        </div>
+
+        {/* Pricing Note */}
+
+        <div
+          className="
+            mx-auto
+            mt-14
+            max-w-4xl
+            rounded-2xl
+            border
+            border-white/10
+            bg-white/[0.03]
+            px-6
+            py-5
+            text-center
+          "
+          data-aos="fade-up"
+        >
+
+          <p className="text-sm leading-7 text-gray-400">
+            💡 Need a smaller task or a custom service?
+            <a
+              href="#contact"
+              className="ml-1 font-semibold text-cyan-400 transition hover:text-cyan-300"
+            >
+              Contact us
+            </a>
+            {" "}for a personalized quote.
+          </p>
 
         </div>
 

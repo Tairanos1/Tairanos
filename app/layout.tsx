@@ -1,11 +1,12 @@
-import AIChat from "./components/AIChat";
-import WhatsAppButton from "./components/WhatsAppButton";
-import BackToTop from "./components/BackToTop";
-import ScrollProgress from "./components/ScrollProgress";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
+
 import AOSInit from "./components/AOSInit";
+import ScrollProgress from "./components/ScrollProgress";
+import BackToTop from "./components/BackToTop";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,35 +19,55 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  /*
+   * Main website URL
+   * All relative metadata URLs will use this domain.
+   */
   metadataBase: new URL("https://www.tairanos.com"),
 
   title: {
-    default: "Tairanos | AI Automation & Business Solutions",
+    default: "Tairanos | AI Automation & Digital Business Solutions",
     template: "%s | Tairanos",
   },
 
   description:
-    "Tairanos helps businesses automate customer support, websites, AI chatbots and business workflows using modern artificial intelligence.",
+    "Tairanos provides AI automation, AI chatbots, website development, SEO, digital marketing, content services and custom digital solutions for businesses worldwide.",
 
   keywords: [
     "Tairanos",
     "AI Automation",
-    "AI Automation Platform",
     "AI Chatbot",
     "Business Automation",
-    "Customer Support Automation",
     "AI Solutions",
     "Website Development",
-    "SEO",
+    "Web Development",
+    "SEO Services",
     "Digital Marketing",
+    "AI Voice Agent",
+    "Content Writing",
+    "Virtual Assistant",
+    "Data Entry",
+    "Bengali English Translation",
+    "Graphic Design",
   ],
 
-  authors: [{ name: "Tairanos" }],
+  authors: [
+    {
+      name: "Tairanos",
+    },
+  ],
+
   creator: "Tairanos",
   publisher: "Tairanos",
+  applicationName: "Tairanos",
+  category: "technology",
 
+  /*
+   * IMPORTANT:
+   * "/" resolves to https://www.tairanos.com/
+   */
   alternates: {
-    canonical: "https://www.tairanos.com",
+    canonical: "/",
   },
 
   icons: {
@@ -61,30 +82,33 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Tairanos | AI Automation & Business Solutions",
-    description:
-      "Automate customer support, websites, AI chatbots and business workflows with Tairanos.",
-
-    url: "https://www.tairanos.com",
-    siteName: "Tairanos",
-    locale: "en_US",
     type: "website",
+    locale: "en_US",
+    url: "https://www.tairanos.com/",
+    siteName: "Tairanos",
+
+    title: "Tairanos | AI Automation & Digital Business Solutions",
+
+    description:
+      "AI automation, chatbots, websites, SEO, digital marketing and custom digital solutions for businesses worldwide.",
 
     images: [
       {
         url: "/tairanos-logo.png",
         width: 1200,
         height: 630,
-        alt: "Tairanos",
+        alt: "Tairanos - AI Automation & Digital Business Solutions",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Tairanos | AI Automation & Business Solutions",
+
+    title: "Tairanos | AI Automation & Digital Business Solutions",
+
     description:
-      "Automate customer support, websites, AI chatbots and business workflows with Tairanos.",
+      "AI automation, websites, chatbots, SEO and digital business solutions for clients worldwide.",
 
     images: ["/tairanos-logo.png"],
   },
@@ -92,6 +116,7 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+
     googleBot: {
       index: true,
       follow: true,
@@ -118,10 +143,12 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <AOSInit />
+
         <ScrollProgress />
+
         <BackToTop />
+
         <WhatsAppButton />
-        {/* <AIChat /> */}
 
         {children}
       </body>
