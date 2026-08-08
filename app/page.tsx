@@ -24,7 +24,9 @@ const structuredData = {
       publisher: {
         "@id": "https://www.tairanos.com/#organization",
       },
+      inLanguage: "en",
     },
+
     {
       "@type": "Organization",
       "@id": "https://www.tairanos.com/#organization",
@@ -38,12 +40,34 @@ const structuredData = {
       telephone: "+8801746460832",
       description:
         "Tairanos provides AI automation, AI chatbots, website development, SEO, digital marketing, content services and custom digital solutions.",
-      areaServed: "Worldwide",
+      areaServed: {
+        "@type": "Place",
+        name: "Worldwide",
+      },
       sameAs: [
         "https://www.facebook.com/profile.php?id=61592556667994",
         "https://github.com/Tairanos1/Tairanos",
-        "https://www.linkedin.com/in/tairanos-undefined-952931427",
       ],
+    },
+
+    {
+      "@type": "WebPage",
+      "@id": "https://www.tairanos.com/#webpage",
+      url: "https://www.tairanos.com/",
+      name: "Tairanos | AI Automation & Digital Business Solutions",
+      description:
+        "Tairanos provides AI automation, AI chatbots, website development, SEO, digital marketing, content services and custom digital solutions for businesses worldwide.",
+      isPartOf: {
+        "@id": "https://www.tairanos.com/#website",
+      },
+      about: {
+        "@id": "https://www.tairanos.com/#organization",
+      },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: "https://www.tairanos.com/tairanos-logo.png",
+      },
+      inLanguage: "en",
     },
   ],
 };
