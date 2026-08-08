@@ -11,9 +11,55 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import AIChat from "./components/AIChat";
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.tairanos.com/#website",
+      url: "https://www.tairanos.com/",
+      name: "Tairanos",
+      description:
+        "AI automation, websites, chatbots, SEO, digital marketing and custom digital solutions for businesses worldwide.",
+      publisher: {
+        "@id": "https://www.tairanos.com/#organization",
+      },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.tairanos.com/#organization",
+      name: "Tairanos",
+      url: "https://www.tairanos.com/",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.tairanos.com/tairanos-logo.png",
+      },
+      email: "tairanos8@gmail.com",
+      telephone: "+8801746460832",
+      description:
+        "Tairanos provides AI automation, AI chatbots, website development, SEO, digital marketing, content services and custom digital solutions.",
+      areaServed: "Worldwide",
+      sameAs: [
+        "https://www.facebook.com/profile.php?id=61592556667994",
+        "https://github.com/Tairanos1/Tairanos",
+        "https://www.linkedin.com/in/tairanos-undefined-952931427",
+      ],
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#0B1220] text-white">
+
+      {/* SEO Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
+
       <Navbar />
 
       <Hero />
@@ -38,6 +84,7 @@ export default function Home() {
 
       {/* AI Chatbot */}
       <AIChat />
+
     </main>
   );
 }
