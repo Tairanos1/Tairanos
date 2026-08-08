@@ -9,23 +9,27 @@ export default function FAQ() {
   const questions = [
     {
       q: "What services does Tairanos provide?",
-      a: "We provide AI Chatbots, AI Website Development, Business Automation, AI Voice Agents, SEO Optimization and custom AI solutions tailored to your business.",
+      a: "Tairanos provides AI automation, AI chatbots, website development, SEO, digital marketing, content services, translation, virtual assistance, AI voice solutions and custom digital services.",
     },
     {
-      q: "Can small businesses use AI?",
-      a: "Absolutely. Our AI solutions are designed for startups, small businesses and enterprises to improve efficiency and reduce operational costs.",
+      q: "Do you work with small businesses and startups?",
+      a: "Yes. Our services are designed for individuals, startups, small businesses and growing companies. We can recommend a solution based on your goals, budget and requirements.",
     },
     {
-      q: "How long does it take to build a website?",
-      a: "Most projects are completed within a few days to a few weeks depending on complexity and required features.",
+      q: "How long does a project take?",
+      a: "Project timelines depend on the type, size and complexity of the work. After understanding your requirements, we can provide an estimated delivery timeline.",
     },
     {
-      q: "Do you build custom AI solutions?",
-      a: "Yes. We develop fully customized AI systems, automations and integrations based on your business requirements.",
+      q: "Can you build custom AI solutions?",
+      a: "Yes. We can develop customized AI chatbots, automation workflows, AI voice solutions and other digital systems based on your specific business requirements.",
     },
     {
       q: "Do you provide support after delivery?",
-      a: "Yes. We offer ongoing maintenance, updates and technical support to ensure your solution continues running smoothly.",
+      a: "Support and maintenance can be arranged depending on the project and service requirements. We can discuss the appropriate support option before starting the project.",
+    },
+    {
+      q: "How do I get started?",
+      a: "Simply contact Tairanos through the Contact section and tell us about your project, goals and requirements. We will review your request and discuss the next steps with you.",
     },
   ];
 
@@ -50,13 +54,15 @@ export default function FAQ() {
           <h2 className="mt-6 text-4xl font-extrabold md:text-5xl">
             Frequently Asked
             <br />
+
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               Questions
             </span>
           </h2>
 
-          <p className="mt-6 text-lg text-gray-300">
-            Everything you need to know about our AI solutions and services.
+          <p className="mt-6 text-lg leading-8 text-gray-300">
+            Everything you need to know about Tairanos and our digital
+            services.
           </p>
         </div>
 
@@ -69,7 +75,7 @@ export default function FAQ() {
             <div
               key={index}
               data-aos="fade-up"
-              data-aos-delay={index * 100}
+              data-aos-delay={index * 80}
               className="
                 overflow-hidden
                 rounded-3xl
@@ -79,24 +85,28 @@ export default function FAQ() {
                 backdrop-blur-xl
                 transition-all
                 duration-300
-                hover:border-cyan-500
+                hover:border-cyan-500/60
                 hover:bg-white/10
               "
             >
 
               <button
+                type="button"
                 onClick={() =>
                   setOpen(open === index ? null : index)
                 }
+                aria-expanded={open === index}
                 className="
                   flex
                   w-full
                   items-center
                   justify-between
+                  gap-6
                   p-7
                   text-left
                 "
               >
+
                 <h3 className="text-lg font-semibold md:text-xl">
                   {item.q}
                 </h3>
@@ -106,6 +116,7 @@ export default function FAQ() {
                     flex
                     h-10
                     w-10
+                    shrink-0
                     items-center
                     justify-center
                     rounded-full
@@ -115,6 +126,7 @@ export default function FAQ() {
                 >
                   {open === index ? <FaMinus /> : <FaPlus />}
                 </div>
+
               </button>
 
               <div
@@ -124,7 +136,7 @@ export default function FAQ() {
                   duration-300
                   ${
                     open === index
-                      ? "max-h-96 pb-7 px-7"
+                      ? "max-h-96 px-7 pb-7"
                       : "max-h-0"
                   }
                 `}

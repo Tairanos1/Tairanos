@@ -194,7 +194,7 @@ export default function Portfolio() {
               {/* CTA */}
 
               <a
-                href="/#contact"
+                href="#contact"
                 className="
                   mt-7
                   inline-flex

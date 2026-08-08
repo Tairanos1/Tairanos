@@ -217,7 +217,7 @@ export default function Pricing() {
               {/* CTA */}
 
               <a
-                href="/#contact"
+                href="#contact"
                 className={`
                   mt-10
                   flex

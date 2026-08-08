@@ -141,22 +141,23 @@ export default function Features() {
               </p>
 
               <div className="relative mt-8">
-                <button
+                <a
+                  href="#contact"
                   className="
-                    inline-flex
-                    items-center
-                    gap-2
-                    text-sm
-                    font-semibold
-                    text-cyan-400
-                    transition-all
-                    duration-300
-                    hover:gap-3
-                    hover:text-cyan-300
-                  "
-                >
-                  Learn More →
-                </button>
+                     inline-flex
+                     items-center
+                     gap-2
+                     text-sm
+                     font-semibold
+                     text-cyan-400
+                     transition-all
+                     duration-300
+                     hover:gap-3
+                     hover:text-cyan-300
+                     "
+                  >
+                      Learn More →
+                </a>
               </div>
 
             </div>

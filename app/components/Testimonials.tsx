@@ -7,22 +7,22 @@ import {
 export default function Testimonials() {
   const testimonials = [
     {
-      name: "Rahim Ahmed",
-      role: "Business Owner",
+      name: "AI Automation",
+      role: "Business Efficiency",
       review:
-        "Tairanos transformed our customer support with AI automation. We now save hours every day and our clients are happier than ever.",
+        "Automate repetitive tasks, improve customer support and give your team more time to focus on important business activities.",
     },
     {
-      name: "Sara Khan",
-      role: "Marketing Manager",
+      name: "Modern Websites",
+      role: "Digital Presence",
       review:
-        "The AI chatbot and automation system significantly improved our productivity. Highly recommended for growing businesses.",
+        "Build responsive, professional and SEO-friendly websites designed to give businesses a strong online presence.",
     },
     {
-      name: "David Smith",
-      role: "Startup Founder",
+      name: "Digital Growth",
+      role: "Business Development",
       review:
-        "Professional team, modern technology and excellent support. Tairanos truly understands AI-powered business solutions.",
+        "Use practical AI, SEO, content and digital solutions to improve your online presence and support long-term business growth.",
     },
   ];
 
@@ -40,20 +40,22 @@ export default function Testimonials() {
           data-aos="fade-up"
         >
           <span className="inline-block rounded-full border border-cyan-500/40 bg-cyan-500/10 px-5 py-2 text-sm text-cyan-400">
-            Client Testimonials
+            Why Businesses Choose Tairanos
           </span>
 
           <h2 className="mt-6 text-4xl font-extrabold md:text-5xl">
-            Trusted By
+            Built For
             <br />
+
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Businesses Worldwide
+              Real Business Needs
             </span>
           </h2>
 
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            Discover why companies choose Tairanos to automate their
-            business, improve customer experience and accelerate growth.
+            Tairanos combines AI, automation and modern digital services
+            to help businesses work smarter, improve their online presence
+            and achieve their goals.
           </p>
         </div>
 
@@ -87,6 +89,7 @@ export default function Testimonials() {
             >
 
               {/* Glow */}
+
               <div
                 className="
                   absolute
@@ -104,9 +107,13 @@ export default function Testimonials() {
               />
 
               {/* Quote */}
-              <FaQuoteLeft className="relative text-4xl text-cyan-400 opacity-80" />
+
+              <FaQuoteLeft
+                className="relative text-4xl text-cyan-400 opacity-80"
+              />
 
               {/* Stars */}
+
               <div className="relative mt-5 flex gap-1 text-yellow-400">
                 <FaStar />
                 <FaStar />
@@ -115,12 +122,13 @@ export default function Testimonials() {
                 <FaStar />
               </div>
 
-              {/* Review */}
+              {/* Description */}
+
               <p className="relative mt-6 leading-8 text-gray-300 italic">
                 "{item.review}"
               </p>
 
-              {/* User */}
+              {/* Service */}
 
               <div className="relative mt-8 flex items-center gap-4">
 
@@ -129,11 +137,11 @@ export default function Testimonials() {
                 </div>
 
                 <div>
-                  <h3 className="font-bold text-lg">
+                  <h3 className="text-lg font-bold">
                     {item.name}
                   </h3>
 
-                  <p className="text-cyan-400 text-sm">
+                  <p className="text-sm text-cyan-400">
                     {item.role}
                   </p>
                 </div>
