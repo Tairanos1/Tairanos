@@ -139,7 +139,7 @@ export default function PrivacyPolicy() {
               </p>
 
               <p>
-                Phone: +8801746460832
+                Phone / WhatsApp: +8801341133374
               </p>
 
             </div>

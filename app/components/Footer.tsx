@@ -23,15 +23,12 @@ export default function Footer() {
       <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-blue-600/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-20">
-
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
 
           {/* ================= BRAND ================= */}
 
           <div>
-
             <div className="flex items-center gap-3">
-
               <Image
                 src="/tairanos-logo.png"
                 alt="Tairanos"
@@ -43,7 +40,6 @@ export default function Footer() {
                 <span className="text-cyan-400">T</span>
                 airanos
               </h2>
-
             </div>
 
             <p className="mt-6 leading-7 text-gray-400">
@@ -72,20 +68,20 @@ export default function Footer() {
               {/* Phone */}
 
               <a
-                href="tel:+8801746460832"
+                href="tel:+8801341133374"
                 className="flex items-center gap-3 transition hover:text-cyan-400"
               >
                 <FaPhoneAlt className="text-cyan-400" />
 
                 <span>
-                  +8801746460832
+                  +8801341133374
                 </span>
               </a>
 
               {/* WhatsApp */}
 
               <a
-                href="https://wa.me/8801746460832"
+                href="https://wa.me/8801341133374"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 transition hover:text-green-400"
@@ -100,35 +96,29 @@ export default function Footer() {
               {/* Location */}
 
               <div className="flex items-center gap-3">
-
                 <FaMapMarkerAlt className="text-cyan-400" />
 
                 <span>
                   Bangladesh • Serving Worldwide
                 </span>
-
               </div>
 
               {/* Worldwide */}
 
               <div className="flex items-center gap-3">
-
                 <FaGlobe className="text-cyan-400" />
 
                 <span>
                   Worldwide Services
                 </span>
-
               </div>
 
             </div>
-
           </div>
 
           {/* ================= QUICK LINKS ================= */}
 
           <div>
-
             <h3 className="mb-6 text-xl font-semibold text-white">
               Quick Links
             </h3>
@@ -181,13 +171,11 @@ export default function Footer() {
               </li>
 
             </ul>
-
           </div>
 
           {/* ================= SERVICES ================= */}
 
           <div>
-
             <h3 className="mb-6 text-xl font-semibold text-white">
               Our Services
             </h3>
@@ -227,13 +215,11 @@ export default function Footer() {
               </li>
 
             </ul>
-
           </div>
 
           {/* ================= SOCIAL ================= */}
 
           <div>
-
             <h3 className="mb-6 text-xl font-semibold">
               Connect With Us
             </h3>
@@ -248,21 +234,21 @@ export default function Footer() {
               {/* Facebook */}
 
               <a
-                href="https://www.facebook.com/profile.php?id=61592556667994"
+                href="https://www.facebook.com/share/1CdNaQ9wX4/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
                 className="
-                flex
-                h-12
-                w-12
-                items-center
-                justify-center
-                rounded-xl
-                bg-white/10
-                transition-all
-                hover:-translate-y-1
-                hover:bg-blue-600
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-white/10
+                  transition-all
+                  hover:-translate-y-1
+                  hover:bg-blue-600
                 "
               >
                 <FaFacebookF />
@@ -276,16 +262,16 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 className="
-                flex
-                h-12
-                w-12
-                items-center
-                justify-center
-                rounded-xl
-                bg-white/10
-                transition-all
-                hover:-translate-y-1
-                hover:bg-blue-600
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-white/10
+                  transition-all
+                  hover:-translate-y-1
+                  hover:bg-blue-600
                 "
               >
                 <FaLinkedinIn />
@@ -299,16 +285,16 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
                 className="
-                flex
-                h-12
-                w-12
-                items-center
-                justify-center
-                rounded-xl
-                bg-white/10
-                transition-all
-                hover:-translate-y-1
-                hover:bg-gray-700
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-white/10
+                  transition-all
+                  hover:-translate-y-1
+                  hover:bg-gray-700
                 "
               >
                 <FaGithub />
@@ -317,21 +303,21 @@ export default function Footer() {
               {/* WhatsApp */}
 
               <a
-                href="https://wa.me/8801746460832"
+                href="https://wa.me/8801341133374"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
                 className="
-                flex
-                h-12
-                w-12
-                items-center
-                justify-center
-                rounded-xl
-                bg-white/10
-                transition-all
-                hover:-translate-y-1
-                hover:bg-green-500
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-white/10
+                  transition-all
+                  hover:-translate-y-1
+                  hover:bg-green-500
                 "
               >
                 <FaWhatsapp />
@@ -344,52 +330,47 @@ export default function Footer() {
             <a
               href="#contact"
               className="
-              mt-8
-              inline-flex
-              items-center
-              justify-center
-              rounded-xl
-              bg-gradient-to-r
-              from-cyan-500
-              to-blue-600
-              px-6
-              py-3
-              font-semibold
-              transition-all
-              duration-300
-              hover:scale-105
-              hover:shadow-[0_0_25px_rgba(6,182,212,.3)]
+                mt-8
+                inline-flex
+                items-center
+                justify-center
+                rounded-xl
+                bg-gradient-to-r
+                from-cyan-500
+                to-blue-600
+                px-6
+                py-3
+                font-semibold
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:shadow-[0_0_25px_rgba(6,182,212,.3)]
               "
             >
               Start a Project →
             </a>
 
           </div>
-
         </div>
 
         {/* ================= BOTTOM ================= */}
 
         <div
           className="
-          mt-16
-          border-t
-          border-white/10
-          pt-8
-          text-center
+            mt-16
+            border-t
+            border-white/10
+            pt-8
+            text-center
           "
         >
 
           <p className="text-gray-500">
-
             © 2026{" "}
-
             <span className="text-cyan-400">
               Tairanos
             </span>
-
             . All Rights Reserved.
-
           </p>
 
           <p className="mt-2 text-sm text-gray-600">
@@ -421,9 +402,7 @@ export default function Footer() {
           </div>
 
         </div>
-
       </div>
-
     </footer>
   );
 }

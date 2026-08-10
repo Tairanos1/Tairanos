@@ -37,7 +37,7 @@ const structuredData = {
         url: "https://www.tairanos.com/tairanos-logo.png",
       },
       email: "tairanos8@gmail.com",
-      telephone: "+8801746460832",
+      telephone: "+8801341133374",
       description:
         "Tairanos provides AI automation, AI chatbots, website development, SEO, digital marketing, content services and custom digital solutions.",
       areaServed: {

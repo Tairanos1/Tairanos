@@ -10,6 +10,7 @@ import {
   FaBriefcase,
   FaDollarSign,
   FaCheckCircle,
+  FaWhatsapp,
 } from "react-icons/fa";
 
 export default function Contact() {
@@ -61,9 +62,7 @@ export default function Contact() {
     } catch (error) {
       console.error("Contact form error:", error);
 
-      alert(
-        "❌ Something went wrong. Please try again later."
-      );
+      alert("❌ Something went wrong. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -75,15 +74,12 @@ export default function Contact() {
       className="relative overflow-hidden bg-[#0B1220] py-24 text-white"
     >
       {/* Background Glow */}
-
       <div className="absolute -left-40 top-20 h-80 w-80 rounded-full bg-cyan-500/20 blur-3xl" />
-
       <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-blue-600/20 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6">
 
         {/* Heading */}
-
         <div
           className="mx-auto max-w-3xl text-center"
           data-aos="fade-up"
@@ -109,11 +105,9 @@ export default function Contact() {
         </div>
 
         {/* Content */}
-
         <div className="mt-16 grid gap-10 lg:grid-cols-2">
 
           {/* LEFT SIDE */}
-
           <div
             data-aos="fade-right"
             className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
@@ -131,8 +125,10 @@ export default function Contact() {
             <div className="mt-10 space-y-5">
 
               {/* Email */}
-
-              <div className="flex items-center gap-5 rounded-2xl bg-white/5 p-5">
+              <a
+                href="mailto:tairanos8@gmail.com"
+                className="flex items-center gap-5 rounded-2xl bg-white/5 p-5 transition hover:bg-white/10"
+              >
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
                   <FaEnvelope size={22} />
                 </div>
@@ -146,28 +142,51 @@ export default function Contact() {
                     tairanos8@gmail.com
                   </p>
                 </div>
-              </div>
+              </a>
 
               {/* Phone */}
-
-              <div className="flex items-center gap-5 rounded-2xl bg-white/5 p-5">
+              <a
+                href="tel:+8801341133374"
+                className="flex items-center gap-5 rounded-2xl bg-white/5 p-5 transition hover:bg-white/10"
+              >
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
                   <FaPhoneAlt size={20} />
                 </div>
 
                 <div>
                   <p className="text-sm text-gray-400">
-                    Phone / WhatsApp
+                    Phone
                   </p>
 
                   <p className="font-semibold">
-                    +8801746460832
+                    +8801341133374
                   </p>
                 </div>
-              </div>
+              </a>
+
+              {/* WhatsApp */}
+              <a
+                href="https://wa.me/8801341133374"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-5 rounded-2xl bg-white/5 p-5 transition hover:bg-white/10"
+              >
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
+                  <FaWhatsapp size={23} />
+                </div>
+
+                <div>
+                  <p className="text-sm text-gray-400">
+                    WhatsApp
+                  </p>
+
+                  <p className="font-semibold">
+                    +8801341133374
+                  </p>
+                </div>
+              </a>
 
               {/* Location */}
-
               <div className="flex items-center gap-5 rounded-2xl bg-white/5 p-5">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
                   <FaMapMarkerAlt size={22} />
@@ -185,7 +204,6 @@ export default function Contact() {
               </div>
 
               {/* Worldwide */}
-
               <div className="rounded-2xl border border-cyan-500/20 bg-gradient-to-r from-cyan-500/10 to-blue-600/10 p-6">
 
                 <div className="flex items-center gap-3 text-cyan-400">
@@ -207,7 +225,6 @@ export default function Contact() {
           </div>
 
           {/* RIGHT SIDE */}
-
           <div
             data-aos="fade-left"
             className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
@@ -216,7 +233,6 @@ export default function Contact() {
             {submitted ? (
 
               /* SUCCESS SCREEN */
-
               <div className="flex min-h-[620px] flex-col items-center justify-center text-center">
 
                 <div className="flex h-24 w-24 items-center justify-center rounded-full bg-cyan-500/10 text-cyan-400 shadow-[0_0_40px_rgba(6,182,212,.20)]">
@@ -244,21 +260,7 @@ export default function Contact() {
                 <button
                   type="button"
                   onClick={() => setSubmitted(false)}
-                  className="
-                    mt-8
-                    rounded-xl
-                    bg-gradient-to-r
-                    from-cyan-500
-                    to-blue-600
-                    px-7
-                    py-3
-                    font-semibold
-                    text-white
-                    transition-all
-                    duration-300
-                    hover:scale-105
-                    hover:shadow-[0_0_30px_rgba(6,182,212,.30)]
-                  "
+                  className="mt-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-7 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(6,182,212,.30)]"
                 >
                   Send Another Request
                 </button>
@@ -268,14 +270,12 @@ export default function Contact() {
             ) : (
 
               /* CONTACT FORM */
-
               <form
                 onSubmit={handleSubmit}
                 className="space-y-5"
               >
 
                 {/* Name */}
-
                 <input
                   type="text"
                   required
@@ -287,24 +287,10 @@ export default function Contact() {
                       name: e.target.value,
                     })
                   }
-                  className="
-                    w-full
-                    rounded-xl
-                    border
-                    border-white/10
-                    bg-black/20
-                    px-5
-                    py-4
-                    text-white
-                    outline-none
-                    transition
-                    placeholder:text-gray-500
-                    focus:border-cyan-500
-                  "
+                  className="w-full rounded-xl border border-white/10 bg-black/20 px-5 py-4 text-white outline-none transition placeholder:text-gray-500 focus:border-cyan-500"
                 />
 
                 {/* Email */}
-
                 <input
                   type="email"
                   required
@@ -316,26 +302,11 @@ export default function Contact() {
                       email: e.target.value,
                     })
                   }
-                  className="
-                    w-full
-                    rounded-xl
-                    border
-                    border-white/10
-                    bg-black/20
-                    px-5
-                    py-4
-                    text-white
-                    outline-none
-                    transition
-                    placeholder:text-gray-500
-                    focus:border-cyan-500
-                  "
+                  className="w-full rounded-xl border border-white/10 bg-black/20 px-5 py-4 text-white outline-none transition placeholder:text-gray-500 focus:border-cyan-500"
                 />
 
                 {/* Country */}
-
                 <div className="relative">
-
                   <FaGlobe className="absolute left-5 top-1/2 -translate-y-1/2 text-cyan-400" />
 
                   <input
@@ -349,29 +320,12 @@ export default function Contact() {
                         country: e.target.value,
                       })
                     }
-                    className="
-                      w-full
-                      rounded-xl
-                      border
-                      border-white/10
-                      bg-black/20
-                      py-4
-                      pl-12
-                      pr-5
-                      text-white
-                      outline-none
-                      transition
-                      placeholder:text-gray-500
-                      focus:border-cyan-500
-                    "
+                    className="w-full rounded-xl border border-white/10 bg-black/20 py-4 pl-12 pr-5 text-white outline-none transition placeholder:text-gray-500 focus:border-cyan-500"
                   />
-
                 </div>
 
                 {/* Service */}
-
                 <div className="relative">
-
                   <FaBriefcase className="absolute left-5 top-1/2 -translate-y-1/2 text-cyan-400" />
 
                   <select
@@ -383,23 +337,8 @@ export default function Contact() {
                         service: e.target.value,
                       })
                     }
-                    className="
-                      w-full
-                      appearance-none
-                      rounded-xl
-                      border
-                      border-white/10
-                      bg-[#101827]
-                      py-4
-                      pl-12
-                      pr-5
-                      text-white
-                      outline-none
-                      transition
-                      focus:border-cyan-500
-                    "
+                    className="w-full appearance-none rounded-xl border border-white/10 bg-[#101827] py-4 pl-12 pr-5 text-white outline-none transition focus:border-cyan-500"
                   >
-
                     <option value="">
                       Select a Service
                     </option>
@@ -447,15 +386,11 @@ export default function Contact() {
                     <option value="Other">
                       Other / Custom Service
                     </option>
-
                   </select>
-
                 </div>
 
                 {/* Budget */}
-
                 <div className="relative">
-
                   <FaDollarSign className="absolute left-5 top-1/2 -translate-y-1/2 text-cyan-400" />
 
                   <select
@@ -467,23 +402,8 @@ export default function Contact() {
                         budget: e.target.value,
                       })
                     }
-                    className="
-                      w-full
-                      appearance-none
-                      rounded-xl
-                      border
-                      border-white/10
-                      bg-[#101827]
-                      py-4
-                      pl-12
-                      pr-5
-                      text-white
-                      outline-none
-                      transition
-                      focus:border-cyan-500
-                    "
+                    className="w-full appearance-none rounded-xl border border-white/10 bg-[#101827] py-4 pl-12 pr-5 text-white outline-none transition focus:border-cyan-500"
                   >
-
                     <option value="">
                       Estimated Project Budget
                     </option>
@@ -511,13 +431,10 @@ export default function Contact() {
                     <option value="Not Sure">
                       I'm Not Sure
                     </option>
-
                   </select>
-
                 </div>
 
                 {/* Message */}
-
                 <textarea
                   rows={6}
                   required
@@ -529,73 +446,34 @@ export default function Contact() {
                       message: e.target.value,
                     })
                   }
-                  className="
-                    w-full
-                    resize-none
-                    rounded-xl
-                    border
-                    border-white/10
-                    bg-black/20
-                    px-5
-                    py-4
-                    text-white
-                    outline-none
-                    transition
-                    placeholder:text-gray-500
-                    focus:border-cyan-500
-                  "
+                  className="w-full resize-none rounded-xl border border-white/10 bg-black/20 px-5 py-4 text-white outline-none transition placeholder:text-gray-500 focus:border-cyan-500"
                 />
 
                 {/* Submit */}
-
                 <button
                   type="submit"
                   disabled={loading}
-                  className="
-                    flex
-                    w-full
-                    items-center
-                    justify-center
-                    gap-3
-                    rounded-xl
-                    bg-gradient-to-r
-                    from-cyan-500
-                    to-blue-600
-                    py-4
-                    font-semibold
-                    text-white
-                    transition-all
-                    duration-300
-                    hover:scale-[1.02]
-                    hover:shadow-[0_0_30px_rgba(6,182,212,.25)]
-                    disabled:cursor-not-allowed
-                    disabled:opacity-50
-                  "
+                  className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-4 font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(6,182,212,.25)] disabled:cursor-not-allowed disabled:opacity-50"
                 >
-
                   <FaPaperPlane />
 
                   {loading
                     ? "Sending Request..."
                     : "Send Project Request"}
-
                 </button>
 
                 {/* Privacy */}
-
                 <p className="text-center text-xs leading-5 text-gray-500">
                   We respect your privacy and will only use your information
                   to respond to your project request.
                 </p>
 
               </form>
-
             )}
 
           </div>
 
         </div>
-
       </div>
     </section>
   );

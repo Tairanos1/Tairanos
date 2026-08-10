@@ -54,7 +54,7 @@ const knowledge = [
   {
     keywords: ["contact", "email", "phone"],
     reply:
-      "📧 Email: tairanos8@gmail.com\n📱 Phone: +8801746460832",
+      "📧 Email: tairanos8@gmail.com\n📱 Phone: +8801341133374",
   },
 
   {

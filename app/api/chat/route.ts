@@ -19,7 +19,7 @@ ABOUT TAIRANOS
 - Country: Bangladesh
 - Website: https://www.tairanos.com
 - Email: tairanos8@gmail.com
-- Phone: +8801746460832
+- Phone: +8801341133374
 
 TAIRANOS SERVICES
 1. AI Chatbots
@@ -56,7 +56,7 @@ IMPORTANT PRICING RULES
 CONTACT RULES
 - If someone asks how to contact Tairanos, provide:
   Email: tairanos8@gmail.com
-  Phone: +8801746460832
+  Phone: +8801341133374
   Website: https://www.tairanos.com
 
 LEAD / SALES RULES
