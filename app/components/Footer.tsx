@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   FaFacebookF,
@@ -9,8 +11,13 @@ import {
   FaGlobe,
   FaWhatsapp,
 } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Footer() {
+  const { language } = useLanguage();
+
+  const isBangla = language === "bn";
+
   return (
     <footer
       className="relative overflow-hidden border-t border-white/10 bg-[#070D18] text-white"
@@ -23,12 +30,15 @@ export default function Footer() {
       <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-blue-600/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-20">
+
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
 
           {/* ================= BRAND ================= */}
 
           <div>
+
             <div className="flex items-center gap-3">
+
               <Image
                 src="/tairanos-logo.png"
                 alt="Tairanos"
@@ -40,12 +50,13 @@ export default function Footer() {
                 <span className="text-cyan-400">T</span>
                 airanos
               </h2>
+
             </div>
 
             <p className="mt-6 leading-7 text-gray-400">
-              Tairanos provides AI, digital and business solutions
-              that help businesses around the world grow, automate
-              and succeed online.
+              {isBangla
+                ? "Tairanos AI, ডিজিটাল এবং ব্যবসায়িক সমাধান প্রদান করে, যা সারা বিশ্বের ব্যবসাগুলোকে বৃদ্ধি, অটোমেশন এবং অনলাইনে সফল হতে সাহায্য করে।"
+                : "Tairanos provides AI, digital and business solutions that help businesses around the world grow, automate and succeed online."}
             </p>
 
             {/* Contact */}
@@ -89,38 +100,49 @@ export default function Footer() {
                 <FaWhatsapp className="text-green-400" />
 
                 <span>
-                  WhatsApp
+                  {isBangla ? "হোয়াটসঅ্যাপ" : "WhatsApp"}
                 </span>
               </a>
 
               {/* Location */}
 
               <div className="flex items-center gap-3">
+
                 <FaMapMarkerAlt className="text-cyan-400" />
 
                 <span>
-                  Bangladesh • Serving Worldwide
+                  {isBangla
+                    ? "বাংলাদেশ • বিশ্বব্যাপী সেবা"
+                    : "Bangladesh • Serving Worldwide"}
                 </span>
+
               </div>
 
               {/* Worldwide */}
 
               <div className="flex items-center gap-3">
+
                 <FaGlobe className="text-cyan-400" />
 
                 <span>
-                  Worldwide Services
+                  {isBangla
+                    ? "বিশ্বব্যাপী ডিজিটাল সেবা"
+                    : "Worldwide Services"}
                 </span>
+
               </div>
 
             </div>
+
           </div>
+
 
           {/* ================= QUICK LINKS ================= */}
 
           <div>
+
             <h3 className="mb-6 text-xl font-semibold text-white">
-              Quick Links
+              {isBangla ? "দ্রুত লিংক" : "Quick Links"}
             </h3>
 
             <ul className="space-y-4 text-gray-400">
@@ -130,7 +152,7 @@ export default function Footer() {
                   href="#home"
                   className="transition hover:text-cyan-400"
                 >
-                  Home
+                  {isBangla ? "হোম" : "Home"}
                 </a>
               </li>
 
@@ -139,7 +161,7 @@ export default function Footer() {
                   href="#services"
                   className="transition hover:text-cyan-400"
                 >
-                  Services
+                  {isBangla ? "সেবাসমূহ" : "Services"}
                 </a>
               </li>
 
@@ -148,7 +170,7 @@ export default function Footer() {
                   href="#portfolio"
                   className="transition hover:text-cyan-400"
                 >
-                  Portfolio
+                  {isBangla ? "পোর্টফোলিও" : "Portfolio"}
                 </a>
               </li>
 
@@ -157,7 +179,7 @@ export default function Footer() {
                   href="#pricing"
                   className="transition hover:text-cyan-400"
                 >
-                  Pricing
+                  {isBangla ? "মূল্য" : "Pricing"}
                 </a>
               </li>
 
@@ -166,68 +188,88 @@ export default function Footer() {
                   href="#contact"
                   className="transition hover:text-cyan-400"
                 >
-                  Contact
+                  {isBangla ? "যোগাযোগ" : "Contact"}
                 </a>
               </li>
 
             </ul>
+
           </div>
+
 
           {/* ================= SERVICES ================= */}
 
           <div>
+
             <h3 className="mb-6 text-xl font-semibold text-white">
-              Our Services
+              {isBangla ? "আমাদের সেবাসমূহ" : "Our Services"}
             </h3>
 
             <ul className="space-y-4 text-gray-400">
 
               <li className="transition hover:text-cyan-400">
-                AI & Automation
+                {isBangla ? "AI ও অটোমেশন" : "AI & Automation"}
               </li>
 
               <li className="transition hover:text-cyan-400">
-                Website Development
+                {isBangla ? "ওয়েবসাইট ডেভেলপমেন্ট" : "Website Development"}
               </li>
 
               <li className="transition hover:text-cyan-400">
-                Content & Blog Writing
+                {isBangla
+                  ? "কনটেন্ট ও ব্লগ রাইটিং"
+                  : "Content & Blog Writing"}
               </li>
 
               <li className="transition hover:text-cyan-400">
-                Data Entry & Virtual Assistant
+                {isBangla
+                  ? "ডাটা এন্ট্রি ও ভার্চুয়াল অ্যাসিস্ট্যান্ট"
+                  : "Data Entry & Virtual Assistant"}
               </li>
 
               <li className="transition hover:text-cyan-400">
-                Translation
+                {isBangla
+                  ? "বাংলা ↔ ইংরেজি অনুবাদ"
+                  : "Bengali ↔ English Translation"}
               </li>
 
               <li className="transition hover:text-cyan-400">
-                Graphic Design
+                {isBangla ? "গ্রাফিক ডিজাইন" : "Graphic Design"}
               </li>
 
               <li className="transition hover:text-cyan-400">
-                Resume & Cover Letter
+                {isBangla
+                  ? "রেজুমে ও কভার লেটার"
+                  : "Resume & Cover Letter"}
               </li>
 
               <li className="transition hover:text-cyan-400">
-                SEO & Keyword Research
+                {isBangla
+                  ? "SEO ও কীওয়ার্ড রিসার্চ"
+                  : "SEO & Keyword Research"}
               </li>
 
             </ul>
+
           </div>
+
 
           {/* ================= SOCIAL ================= */}
 
           <div>
+
             <h3 className="mb-6 text-xl font-semibold">
-              Connect With Us
+              {isBangla
+                ? "আমাদের সাথে যুক্ত থাকুন"
+                : "Connect With Us"}
             </h3>
 
             <p className="mb-6 leading-7 text-gray-400">
-              Follow Tairanos and stay updated with our latest
-              AI, digital and business solutions.
+              {isBangla
+                ? "Tairanos-কে ফলো করুন এবং আমাদের সর্বশেষ AI, ডিজিটাল ও ব্যবসায়িক সমাধান সম্পর্কে আপডেট থাকুন।"
+                : "Follow Tairanos and stay updated with our latest AI, digital and business solutions."}
             </p>
+
 
             <div className="flex flex-wrap gap-4">
 
@@ -254,6 +296,7 @@ export default function Footer() {
                 <FaFacebookF />
               </a>
 
+
               {/* LinkedIn */}
 
               <a
@@ -277,6 +320,7 @@ export default function Footer() {
                 <FaLinkedinIn />
               </a>
 
+
               {/* GitHub */}
 
               <a
@@ -299,6 +343,7 @@ export default function Footer() {
               >
                 <FaGithub />
               </a>
+
 
               {/* WhatsApp */}
 
@@ -325,6 +370,7 @@ export default function Footer() {
 
             </div>
 
+
             {/* CTA */}
 
             <a
@@ -347,11 +393,15 @@ export default function Footer() {
                 hover:shadow-[0_0_25px_rgba(6,182,212,.3)]
               "
             >
-              Start a Project →
+              {isBangla
+                ? "প্রজেক্ট শুরু করুন →"
+                : "Start a Project →"}
             </a>
 
           </div>
+
         </div>
+
 
         {/* ================= BOTTOM ================= */}
 
@@ -366,16 +416,28 @@ export default function Footer() {
         >
 
           <p className="text-gray-500">
+
             © 2026{" "}
+
             <span className="text-cyan-400">
               Tairanos
             </span>
-            . All Rights Reserved.
+
+            {isBangla
+              ? "। সর্বস্বত্ব সংরক্ষিত।"
+              : ". All Rights Reserved."}
+
           </p>
 
+
           <p className="mt-2 text-sm text-gray-600">
-            AI • Digital • Business Solutions • Worldwide
+
+            {isBangla
+              ? "AI • ডিজিটাল • ব্যবসায়িক সমাধান • বিশ্বব্যাপী"
+              : "AI • Digital • Business Solutions • Worldwide"}
+
           </p>
+
 
           {/* Legal Links */}
 
@@ -385,7 +447,9 @@ export default function Footer() {
               href="/terms"
               className="text-gray-500 transition hover:text-cyan-400"
             >
-              Terms & Conditions
+              {isBangla
+                ? "শর্তাবলি"
+                : "Terms & Conditions"}
             </a>
 
             <span className="text-gray-700">
@@ -396,13 +460,17 @@ export default function Footer() {
               href="/privacy"
               className="text-gray-500 transition hover:text-cyan-400"
             >
-              Privacy Policy
+              {isBangla
+                ? "গোপনীয়তা নীতি"
+                : "Privacy Policy"}
             </a>
 
           </div>
 
         </div>
+
       </div>
+
     </footer>
   );
 }

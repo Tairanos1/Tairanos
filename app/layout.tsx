@@ -7,6 +7,7 @@ import AOSInit from "./components/AOSInit";
 import ScrollProgress from "./components/ScrollProgress";
 import BackToTop from "./components/BackToTop";
 import WhatsAppButton from "./components/WhatsAppButton";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,10 +20,6 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  /*
-   * Main website URL
-   * All relative metadata URLs will use this domain.
-   */
   metadataBase: new URL("https://www.tairanos.com"),
 
   title: {
@@ -62,10 +59,6 @@ export const metadata: Metadata = {
   applicationName: "Tairanos",
   category: "technology",
 
-  /*
-   * IMPORTANT:
-   * "/" resolves to https://www.tairanos.com/
-   */
   alternates: {
     canonical: "/",
   },
@@ -142,15 +135,17 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <AOSInit />
+        <LanguageProvider>
+          <AOSInit />
 
-        <ScrollProgress />
+          <ScrollProgress />
 
-        <BackToTop />
+          <BackToTop />
 
-        <WhatsAppButton />
+          <WhatsAppButton />
 
-        {children}
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

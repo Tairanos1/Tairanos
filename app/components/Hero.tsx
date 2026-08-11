@@ -1,8 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Hero() {
+  const { language } = useLanguage();
+
+  const isBangla = language === "bn";
+
   return (
     <section
       id="home"
@@ -26,7 +31,7 @@ export default function Hero() {
             className="inline-flex animate-pulse rounded-full border border-blue-500 bg-blue-500/10 px-5 py-2 text-sm text-blue-400"
             data-aos="fade-right"
           >
-            🚀 AI Automation Platform
+            🚀 {isBangla ? "AI অটোমেশন প্ল্যাটফর্ম" : "AI Automation Platform"}
           </span>
 
           {/* Heading */}
@@ -35,12 +40,23 @@ export default function Hero() {
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            Build Smarter Businesses
-            <br />
-
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-              With AI Automation
-            </span>
+            {isBangla ? (
+              <>
+                AI দিয়ে গড়ুন
+                <br />
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  আরও স্মার্ট ব্যবসা
+                </span>
+              </>
+            ) : (
+              <>
+                Build Smarter Businesses
+                <br />
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  With AI Automation
+                </span>
+              </>
+            )}
           </h1>
 
           {/* Description */}
@@ -49,19 +65,20 @@ export default function Hero() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            Empower your business with AI-powered chatbots, smart websites,
-            workflow automation and custom AI solutions designed to save time,
-            reduce costs and accelerate growth.
+            {isBangla
+              ? "AI-powered chatbot, স্মার্ট ওয়েবসাইট, ব্যবসায়িক অটোমেশন এবং কাস্টম AI সমাধানের মাধ্যমে আপনার সময় ও খরচ কমিয়ে ব্যবসার দ্রুত উন্নতিতে সহায়তা করি।"
+              : "Empower your business with AI-powered chatbots, smart websites, workflow automation and custom AI solutions designed to save time, reduce costs and accelerate growth."}
           </p>
 
           {/* Services */}
           <div className="mt-7 flex flex-wrap gap-3">
+
             <span
               className="rounded-full bg-white/10 px-4 py-2 text-sm transition hover:bg-cyan-500/10"
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              🤖 AI Chatbot
+              🤖 {isBangla ? "AI চ্যাটবট" : "AI Chatbot"}
             </span>
 
             <span
@@ -69,7 +86,7 @@ export default function Hero() {
               data-aos="fade-up"
               data-aos-delay="350"
             >
-              🌐 Smart Website
+              🌐 {isBangla ? "স্মার্ট ওয়েবসাইট" : "Smart Website"}
             </span>
 
             <span
@@ -77,7 +94,7 @@ export default function Hero() {
               data-aos="fade-up"
               data-aos-delay="400"
             >
-              ⚡ Automation
+              ⚡ {isBangla ? "অটোমেশন" : "Automation"}
             </span>
 
             <span
@@ -85,7 +102,7 @@ export default function Hero() {
               data-aos="fade-up"
               data-aos-delay="450"
             >
-              🎙️ Voice Agent
+              🎙️ {isBangla ? "ভয়েস এজেন্ট" : "Voice Agent"}
             </span>
 
             <span
@@ -93,7 +110,7 @@ export default function Hero() {
               data-aos="fade-up"
               data-aos-delay="500"
             >
-              📈 SEO
+              📈 {isBangla ? "SEO" : "SEO"}
             </span>
 
             <span
@@ -101,8 +118,9 @@ export default function Hero() {
               data-aos="fade-up"
               data-aos-delay="550"
             >
-              💼 Business Growth
+              💼 {isBangla ? "ব্যবসার উন্নতি" : "Business Growth"}
             </span>
+
           </div>
 
           {/* ================= CTA BUTTONS ================= */}
@@ -111,21 +129,27 @@ export default function Hero() {
             data-aos="zoom-in"
             data-aos-delay="600"
           >
-            {/* Start Your Project */}
+
+            {/* Start Project */}
             <a
               href="#contact"
               className="inline-flex flex-1 items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-center font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/30 sm:flex-none"
             >
-              Start Your Project →
+              {isBangla
+                ? "আপনার প্রজেক্ট শুরু করুন →"
+                : "Start Your Project →"}
             </a>
 
-            {/* Book Free Consultation */}
+            {/* Consultation */}
             <a
               href="#contact"
               className="inline-flex flex-1 items-center justify-center rounded-xl border border-gray-500 px-8 py-4 text-center font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500 hover:bg-white/5 sm:flex-none"
             >
-              Book Free Consultation
+              {isBangla
+                ? "ফ্রি পরামর্শ নিন"
+                : "Book Free Consultation"}
             </a>
+
           </div>
 
           {/* Trust Points */}
@@ -134,9 +158,17 @@ export default function Hero() {
             data-aos="fade-up"
             data-aos-delay="700"
           >
-            <span>✅ AI Powered</span>
-            <span>✅ Fast Delivery</span>
-            <span>✅ 24/7 Support</span>
+            <span>
+              ✅ {isBangla ? "AI চালিত" : "AI Powered"}
+            </span>
+
+            <span>
+              ✅ {isBangla ? "দ্রুত ডেলিভারি" : "Fast Delivery"}
+            </span>
+
+            <span>
+              ✅ {isBangla ? "২৪/৭ সাপোর্ট" : "24/7 Support"}
+            </span>
           </div>
         </div>
 
