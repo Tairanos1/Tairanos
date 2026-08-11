@@ -1,26 +1,24 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.tairanos.com";
-
   return [
     {
-      url: baseUrl,
+      url: "https://www.tairanos.com/",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/terms`,
+      url: "https://www.tairanos.com/terms",
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 0.5,
+      priority: 0.3,
     },
     {
-      url: `${baseUrl}/privacy`,
+      url: "https://www.tairanos.com/privacy",
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 0.5,
+      priority: 0.3,
     },
   ];
 }
