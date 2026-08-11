@@ -1,229 +1,402 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { FaBars, FaTimes, FaGlobe } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaGlobe, FaBars, FaTimes } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-
   const { language, setLanguage } = useLanguage();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const isBangla = language === "bn";
 
-  const menu = [
+  // ================================
+  // CLOSE MENU
+  // ================================
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  // ================================
+  // ESC KEY
+  // ================================
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  // ================================
+  // PREVENT BODY SCROLL
+  // WHEN MOBILE MENU IS OPEN
+  // ================================
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  // ================================
+  // NAVIGATION ITEMS
+  // ================================
+
+  const navItems = [
     {
-      name: isBangla ? "হোম" : "Home",
       href: "#home",
+      en: "Home",
+      bn: "হোম",
     },
     {
-      name: isBangla ? "সেবাসমূহ" : "Services",
       href: "#services",
+      en: "Services",
+      bn: "সার্ভিস",
     },
     {
-      name: isBangla ? "পোর্টফোলিও" : "Portfolio",
       href: "#portfolio",
+      en: "Portfolio",
+      bn: "পোর্টফোলিও",
     },
     {
-      name: isBangla ? "মূল্য" : "Pricing",
       href: "#pricing",
+      en: "Pricing",
+      bn: "প্রাইসিং",
     },
     {
-      name: isBangla ? "যোগাযোগ" : "Contact",
       href: "#contact",
+      en: "Contact",
+      bn: "যোগাযোগ",
     },
   ];
 
-  const handleLanguageChange = (lang: "en" | "bn") => {
+  // ================================
+  // LANGUAGE CHANGE
+  // ================================
+
+  const changeLanguage = (lang: "en" | "bn") => {
     setLanguage(lang);
   };
 
   return (
-    <nav
-      className="
-        fixed left-0 top-0 z-50 w-full
-        border-b border-white/10
-        bg-[#070D18]/85
-        backdrop-blur-xl
-      "
-    >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+    <>
+      {/* =========================================================
+          DESKTOP + MOBILE NAVBAR
+      ========================================================= */}
 
-        {/* Logo */}
-
-        <a
-          href="#home"
-          onClick={() => setOpen(false)}
-          className="flex items-center gap-3"
-        >
-          <Image
-            src="/tairanos-logo.png"
-            alt="Tairanos"
-            width={42}
-            height={42}
-            className="rounded-xl"
-          />
-
-          <span className="text-2xl font-bold tracking-wide text-white">
-            <span className="text-cyan-400">T</span>airanos
-          </span>
-        </a>
-
-        {/* Desktop Menu */}
-
-        <div className="hidden items-center gap-7 lg:flex">
-
-          {menu.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="
-                relative
-                text-sm
-                font-medium
-                text-gray-300
-                transition
-                duration-300
-                hover:text-cyan-400
-
-                after:absolute
-                after:-bottom-2
-                after:left-0
-                after:h-[2px]
-                after:w-0
-                after:bg-cyan-400
-                after:transition-all
-                after:duration-300
-                hover:after:w-full
-              "
-            >
-              {item.name}
-            </a>
-          ))}
-
-        </div>
-
-        {/* Desktop Right Side */}
-
-        <div className="hidden items-center gap-4 lg:flex">
-
-          {/* Language Switcher */}
-
-          <div className="flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 p-1">
-
-            <button
-              type="button"
-              onClick={() => handleLanguageChange("en")}
-              className={`
-                rounded-lg px-3 py-2 text-sm font-semibold
-                transition-all duration-300
-                ${
-                  language === "en"
-                    ? "bg-cyan-500 text-black"
-                    : "text-gray-300 hover:text-cyan-400"
-                }
-              `}
-            >
-              English
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleLanguageChange("bn")}
-              className={`
-                rounded-lg px-3 py-2 text-sm font-semibold
-                transition-all duration-300
-                ${
-                  language === "bn"
-                    ? "bg-cyan-500 text-black"
-                    : "text-gray-300 hover:text-cyan-400"
-                }
-              `}
-            >
-              বাংলা
-            </button>
-
-          </div>
-
-          {/* Worldwide */}
-
-          <div className="flex items-center gap-2 text-sm text-gray-400">
-            <FaGlobe className="text-cyan-400" />
-
-            <span>
-              {isBangla ? "বিশ্বব্যাপী" : "Worldwide"}
-            </span>
-          </div>
-
-          {/* CTA */}
-
-          <a
-            href="#contact"
-            className="
-              inline-flex
-              items-center
-              rounded-xl
-              bg-gradient-to-r
-              from-cyan-500
-              to-blue-600
-              px-6
-              py-3
-              font-semibold
-              text-white
-              transition
-              duration-300
-              hover:scale-105
-              hover:shadow-[0_0_25px_rgba(6,182,212,.45)]
-            "
-          >
-            {isBangla ? "শুরু করুন" : "Get Started"}
-          </a>
-
-        </div>
-
-        {/* Mobile Button */}
-
-        <button
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
+      <header
+        className="
+          fixed
+          left-0
+          top-0
+          z-[9999]
+          w-full
+          border-b
+          border-white/10
+          bg-[#0B1220]/95
+          backdrop-blur-xl
+        "
+      >
+        <div
           className="
-            text-2xl
-            text-white
-            transition
-            hover:text-cyan-400
-            lg:hidden
+            mx-auto
+            flex
+            h-[72px]
+            max-w-7xl
+            items-center
+            justify-between
+            px-4
+            sm:px-6
+            lg:px-8
           "
         >
-          {open ? <FaTimes /> : <FaBars />}
-        </button>
+          {/* =====================================================
+              LOGO
+          ===================================================== */}
 
-      </div>
+          <a
+            href="#home"
+            onClick={closeMenu}
+            className="
+              flex
+              items-center
+              gap-2
+              select-none
+            "
+          >
+            <img
+              src="/tairanos-logo.png"
+              alt="Tairanos"
+              className="
+                h-7
+                w-auto
+                object-contain
+                sm:h-8
+              "
+            />
 
-      {/* Mobile Menu */}
+            <span
+              className="
+                text-2xl
+                font-extrabold
+                tracking-tight
+                sm:text-3xl
+              "
+            >
+              <span className="text-cyan-400">T</span>
+              <span className="text-white">airanos</span>
+            </span>
+          </a>
+
+          {/* =====================================================
+              DESKTOP NAVIGATION
+          ===================================================== */}
+
+          <nav
+            className="
+              hidden
+              items-center
+              gap-7
+              lg:flex
+            "
+          >
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="
+                  text-sm
+                  font-medium
+                  text-gray-300
+                  transition-colors
+                  duration-300
+                  hover:text-cyan-400
+                "
+              >
+                {isBangla ? item.bn : item.en}
+              </a>
+            ))}
+          </nav>
+
+          {/* =====================================================
+              DESKTOP RIGHT SIDE
+          ===================================================== */}
+
+          <div
+            className="
+              hidden
+              items-center
+              gap-4
+              lg:flex
+            "
+          >
+            {/* Language */}
+
+            <div
+              className="
+                flex
+                items-center
+                gap-2
+                rounded-xl
+                border
+                border-white/10
+                bg-white/[0.04]
+                p-1
+              "
+            >
+              <button
+                type="button"
+                onClick={() => changeLanguage("en")}
+                className={`
+                  rounded-lg
+                  px-3
+                  py-1.5
+                  text-xs
+                  font-semibold
+                  transition-all
+                  duration-300
+                  ${
+                    language === "en"
+                      ? "bg-cyan-500 text-black"
+                      : "text-gray-300 hover:text-white"
+                  }
+                `}
+              >
+                GB English
+              </button>
+
+              <button
+                type="button"
+                onClick={() => changeLanguage("bn")}
+                className={`
+                  rounded-lg
+                  px-3
+                  py-1.5
+                  text-xs
+                  font-semibold
+                  transition-all
+                  duration-300
+                  ${
+                    language === "bn"
+                      ? "bg-cyan-500 text-black"
+                      : "text-gray-300 hover:text-white"
+                  }
+                `}
+              >
+                BD বাংলা
+              </button>
+            </div>
+
+            {/* Get Started */}
+
+            <a
+              href="#contact"
+              className="
+                rounded-xl
+                bg-gradient-to-r
+                from-cyan-500
+                to-blue-600
+                px-5
+                py-2.5
+                text-sm
+                font-bold
+                text-white
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:shadow-[0_0_30px_rgba(6,182,212,.30)]
+              "
+            >
+              {isBangla ? "শুরু করুন" : "Get Started"}
+            </a>
+          </div>
+
+          {/* =====================================================
+              MOBILE MENU BUTTON
+          ===================================================== */}
+
+          <button
+            type="button"
+            aria-label={
+              isMenuOpen
+                ? "Close navigation menu"
+                : "Open navigation menu"
+            }
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            className="
+              flex
+              h-11
+              w-11
+              items-center
+              justify-center
+              rounded-xl
+              border
+              border-white/10
+              bg-white/[0.04]
+              text-white
+              transition-all
+              duration-300
+              hover:border-cyan-500/40
+              hover:bg-cyan-500/10
+              lg:hidden
+            "
+          >
+            {isMenuOpen ? (
+              <FaTimes size={24} />
+            ) : (
+              <FaBars size={24} />
+            )}
+          </button>
+        </div>
+      </header>
+
+      {/* =========================================================
+          MOBILE MENU OVERLAY
+      ========================================================= */}
+
+      {isMenuOpen && (
+        <div
+          className="
+            fixed
+            inset-0
+            z-[9998]
+            bg-black/70
+            backdrop-blur-sm
+            lg:hidden
+          "
+          onClick={closeMenu}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* =========================================================
+          MOBILE FULL SCREEN MENU
+      ========================================================= */}
 
       <div
         className={`
-          overflow-hidden
+          fixed
+          left-0
+          top-[72px]
+          z-[9998]
+          h-[calc(100dvh-72px)]
+          w-full
+          overflow-y-auto
+          overscroll-contain
+          bg-[#0B1220]
+          lg:hidden
+          ${
+            isMenuOpen
+              ? "pointer-events-auto translate-y-0 opacity-100"
+              : "pointer-events-none -translate-y-4 opacity-0"
+          }
           transition-all
           duration-300
-          lg:hidden
-
-          ${
-            open
-              ? "max-h-[700px] border-t border-white/10"
-              : "max-h-0"
-          }
         `}
       >
+        <div className="mx-auto min-h-full max-w-xl px-5 py-7">
+          {/* =====================================================
+              MOBILE LANGUAGE BOX
+          ===================================================== */}
 
-        <div className="space-y-2 bg-[#08101f] px-6 py-6">
-
-          {/* Mobile Language Switcher */}
-
-          <div className="mb-4 rounded-2xl border border-white/10 bg-white/5 p-2">
-
-            <div className="mb-2 flex items-center gap-2 px-2 text-sm text-gray-400">
+          <div
+            className="
+              rounded-2xl
+              border
+              border-white/10
+              bg-white/[0.04]
+              p-3
+            "
+          >
+            <div
+              className="
+                flex
+                items-center
+                gap-2
+                px-2
+                pb-3
+                text-sm
+                font-medium
+                text-gray-400
+              "
+            >
               <FaGlobe className="text-cyan-400" />
 
               <span>
@@ -234,117 +407,159 @@ export default function Navbar() {
             </div>
 
             <div className="grid grid-cols-2 gap-2">
+              {/* English */}
 
               <button
                 type="button"
-                onClick={() => handleLanguageChange("en")}
+                onClick={() => changeLanguage("en")}
                 className={`
+                  flex
+                  items-center
+                  justify-center
                   rounded-xl
                   px-4
-                  py-3
+                  py-4
                   text-sm
-                  font-semibold
+                  font-bold
                   transition-all
+                  duration-300
                   ${
                     language === "en"
-                      ? "bg-cyan-500 text-black"
-                      : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-cyan-400"
+                      ? "bg-cyan-500 text-black shadow-lg shadow-cyan-500/20"
+                      : "bg-white/[0.06] text-gray-300 hover:bg-white/[0.10]"
                   }
                 `}
               >
-                🇬🇧 English
+                GB English
               </button>
+
+              {/* Bangla */}
 
               <button
                 type="button"
-                onClick={() => handleLanguageChange("bn")}
+                onClick={() => changeLanguage("bn")}
                 className={`
+                  flex
+                  items-center
+                  justify-center
                   rounded-xl
                   px-4
-                  py-3
+                  py-4
                   text-sm
-                  font-semibold
+                  font-bold
                   transition-all
+                  duration-300
                   ${
                     language === "bn"
-                      ? "bg-cyan-500 text-black"
-                      : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-cyan-400"
+                      ? "bg-cyan-500 text-black shadow-lg shadow-cyan-500/20"
+                      : "bg-white/[0.06] text-gray-300 hover:bg-white/[0.10]"
                   }
                 `}
               >
-                🇧🇩 বাংলা
+                BD বাংলা
               </button>
-
             </div>
-
           </div>
 
-          {/* Mobile Navigation */}
+          {/* =====================================================
+              MOBILE NAVIGATION LINKS
+          ===================================================== */}
 
-          {menu.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="
-                block
-                rounded-xl
-                px-4
-                py-3
-                text-gray-300
-                transition
-                hover:bg-white/5
-                hover:text-cyan-400
-              "
-            >
-              {item.name}
-            </a>
-          ))}
+          <nav className="mt-6">
+            <div className="space-y-1">
+              {navItems.map((item, index) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMenu}
+                  className="
+                    flex
+                    min-h-[58px]
+                    items-center
+                    rounded-xl
+                    px-5
+                    text-lg
+                    font-medium
+                    text-gray-200
+                    transition-all
+                    duration-300
+                    hover:bg-white/[0.05]
+                    hover:pl-7
+                    hover:text-cyan-400
+                  "
+                  style={{
+                    transitionDelay: `${index * 30}ms`,
+                  }}
+                >
+                  {isBangla ? item.bn : item.en}
+                </a>
+              ))}
+            </div>
+          </nav>
 
-          {/* Worldwide */}
+          {/* =====================================================
+              MOBILE GLOBAL TEXT
+          ===================================================== */}
 
-          <div className="flex items-center gap-2 px-4 py-3 text-sm text-gray-400">
-
+          <div
+            className="
+              mt-5
+              flex
+              items-center
+              gap-2
+              px-5
+              text-sm
+              text-gray-400
+            "
+          >
             <FaGlobe className="text-cyan-400" />
 
             <span>
               {isBangla
-                ? "বিশ্বব্যাপী ক্লায়েন্টদের জন্য সেবা"
+                ? "বিশ্বব্যাপী ক্লায়েন্টদের জন্য"
                 : "Serving Clients Worldwide"}
             </span>
-
           </div>
 
-          {/* Mobile CTA */}
+          {/* =====================================================
+              MOBILE GET STARTED
+          ===================================================== */}
 
           <a
             href="#contact"
-            onClick={() => setOpen(false)}
+            onClick={closeMenu}
             className="
-              mt-3
+              mt-6
               flex
+              min-h-[60px]
+              items-center
               justify-center
               rounded-xl
               bg-gradient-to-r
               from-cyan-500
               to-blue-600
               px-6
-              py-3
-              font-semibold
+              text-lg
+              font-bold
               text-white
-              transition
+              transition-all
+              duration-300
               hover:scale-[1.02]
+              hover:shadow-[0_0_35px_rgba(6,182,212,.30)]
             "
           >
             {isBangla
-              ? "শুরু করুন"
-              : "Get Started"}
+              ? "শুরু করুন →"
+              : "Get Started →"}
           </a>
 
+          {/* =====================================================
+              MOBILE BOTTOM SPACE
+          ===================================================== */}
+
+          <div className="h-10" />
         </div>
-
       </div>
-
-    </nav>
+    </>
   );
 }
