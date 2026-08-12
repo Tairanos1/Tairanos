@@ -19,6 +19,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
 
     {
+      url: "https://www.tairanos.com/ai-chatbot",
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+
+    {
+      url: "https://www.tairanos.com/business-automation",
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+
+    {
       url: "https://www.tairanos.com/terms",
       lastModified,
       changeFrequency: "yearly",
