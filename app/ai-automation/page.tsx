@@ -1,9 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
-  title: "AI Automation Services | Tairanos",
+export const metadata: Metadata = {
+  title: "AI Automation Services",
   description:
     "Tairanos provides AI automation, AI chatbots, workflow automation, AI voice agents and custom AI solutions for businesses worldwide.",
+  alternates: {
+    canonical: "/ai-automation",
+  },
+  openGraph: {
+    type: "website",
+    url: "/ai-automation",
+    siteName: "Tairanos",
+    title: "AI Automation Services | Tairanos",
+    description:
+      "AI automation, AI chatbots, workflow automation, AI voice agents and custom AI solutions for businesses worldwide.",
+    images: [{ url: "/tairanos-logo.png", alt: "Tairanos AI Automation Services" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Automation Services | Tairanos",
+    description:
+      "AI automation, AI chatbots, workflow automation, AI voice agents and custom AI solutions for businesses worldwide.",
+    images: ["/tairanos-logo.png"],
+  },
 };
 
 const solutions = [
@@ -12,38 +32,78 @@ const solutions = [
     title: "AI Chatbot Development",
     description:
       "Build intelligent AI chatbots that answer customer questions, provide support and help your business stay available 24/7.",
+    href: "/ai-chatbot",
+    linkText: "Explore AI Chatbot Services",
   },
   {
     icon: "⚡",
     title: "Business Automation",
     description:
       "Automate repetitive tasks, workflows, lead management and customer support so your team can focus on important work.",
+    href: "/business-automation",
+    linkText: "Explore Business Automation",
   },
   {
     icon: "🎙️",
     title: "AI Voice Agents",
     description:
       "AI-powered voice assistants that can handle calls, answer questions, collect information and support customer communication.",
+    href: "/#contact",
+    linkText: "Discuss Voice Automation",
   },
   {
     icon: "🔗",
     title: "Workflow Integration",
     description:
       "Connect your business tools and create automated workflows that move information between your systems efficiently.",
+    href: "/#contact",
+    linkText: "Discuss Your Workflow",
   },
   {
     icon: "📊",
     title: "AI Business Solutions",
     description:
       "Use practical AI solutions to improve productivity, reduce manual work and create better customer experiences.",
+    href: "/#contact",
+    linkText: "Find an AI Solution",
   },
   {
     icon: "🧠",
     title: "Custom AI Solutions",
     description:
       "Get a custom AI solution designed around your business model, workflow, requirements and long-term growth goals.",
+    href: "/#contact",
+    linkText: "Build a Custom Solution",
   },
 ];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.tairanos.com/ai-automation#webpage",
+      url: "https://www.tairanos.com/ai-automation",
+      name: "AI Automation Services | Tairanos",
+      description:
+        "Tairanos provides AI automation, AI chatbots, workflow automation, AI voice agents and custom AI solutions for businesses worldwide.",
+      isPartOf: { "@id": "https://www.tairanos.com/#website" },
+      about: { "@id": "https://www.tairanos.com/ai-automation#service" },
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.tairanos.com/ai-automation#service",
+      name: "AI Automation Services",
+      serviceType: "AI Automation",
+      description:
+        "AI automation, business workflow automation, AI chatbots, AI voice agents and custom AI solutions for businesses.",
+      url: "https://www.tairanos.com/ai-automation",
+      provider: { "@id": "https://www.tairanos.com/#organization" },
+      areaServed: "Worldwide",
+      audience: { "@type": "BusinessAudience", audienceType: "Businesses" },
+    },
+  ],
+};
 
 const benefits = [
   {
@@ -94,6 +154,10 @@ const process = [
 export default function AIAutomationPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#0B1220] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Background glow */}
       <div className="pointer-events-none fixed left-[-180px] top-[180px] h-[420px] w-[420px] rounded-full bg-cyan-500/10 blur-[120px]" />
 
@@ -130,6 +194,13 @@ export default function AIAutomationPage() {
               className="hidden rounded-lg px-4 py-2 text-sm font-medium text-gray-300 transition hover:bg-white/10 hover:text-white sm:block"
             >
               Services
+            </Link>
+
+            <Link
+              href="/ai-chatbot"
+              className="hidden rounded-lg px-4 py-2 text-sm font-medium text-gray-300 transition hover:bg-white/10 hover:text-white md:block"
+            >
+              AI Chatbot
             </Link>
 
             <Link
@@ -257,10 +328,10 @@ export default function AIAutomationPage() {
                 </p>
 
                 <Link
-                  href="/#contact"
+                  href={item.href}
                   className="mt-6 inline-flex text-sm font-semibold text-cyan-400 transition hover:text-cyan-300"
                 >
-                  Discuss Your Project →
+                  {item.linkText} →
                 </Link>
               </div>
             ))}
