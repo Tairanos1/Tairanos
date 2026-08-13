@@ -297,30 +297,6 @@ export default function Footer() {
               </a>
 
 
-              {/* LinkedIn */}
-
-              <a
-                href="https://www.linkedin.com/in/tairanos-undefined-952931427"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-xl
-                  bg-white/10
-                  transition-all
-                  hover:-translate-y-1
-                  hover:bg-blue-600
-                "
-              >
-                <FaLinkedinIn />
-              </a>
-
-
               {/* GitHub */}
 
               <a

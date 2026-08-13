@@ -1,3 +1,28 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "Read the Tairanos Privacy Policy to learn how we collect, use and protect information when you use our website and digital services.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.tairanos.com/privacy",
+    siteName: "Tairanos",
+    title: "Privacy Policy | Tairanos",
+    description:
+      "Learn how Tairanos collects, uses and protects information when you use our website and digital services.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Privacy Policy | Tairanos",
+    description:
+      "Learn how Tairanos collects, uses and protects information when you use our website and digital services.",
+  },
+};
+
 export default function PrivacyPolicy() {
   return (
     <main className="min-h-screen bg-[#0B1220] px-6 py-24 text-white">

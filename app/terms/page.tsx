@@ -1,3 +1,28 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description:
+    "Read the Tairanos Terms & Conditions governing use of the website and the digital services provided by Tairanos.",
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.tairanos.com/terms",
+    siteName: "Tairanos",
+    title: "Terms & Conditions | Tairanos",
+    description:
+      "Review the terms governing use of the Tairanos website and digital services.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Terms & Conditions | Tairanos",
+    description:
+      "Review the terms governing use of the Tairanos website and digital services.",
+  },
+};
+
 export default function TermsPage() {
   return (
     <main className="min-h-screen bg-[#0B1220] px-6 py-24 text-white">
