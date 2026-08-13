@@ -1,9 +1,57 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Business Automation Services | Tairanos",
+export const metadata: Metadata = {
+  title: "Business Automation Services",
   description:
     "Automate business workflows, repetitive tasks, customer support and lead management with practical AI-powered business automation solutions from Tairanos.",
+  alternates: {
+    canonical: "/business-automation",
+  },
+  openGraph: {
+    type: "website",
+    url: "/business-automation",
+    siteName: "Tairanos",
+    title: "Business Automation Services | Tairanos",
+    description:
+      "Automate business workflows, repetitive tasks, customer support and lead management with practical AI-powered business automation solutions.",
+    images: [{ url: "/tairanos-logo.png", alt: "Tairanos Business Automation Services" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Business Automation Services | Tairanos",
+    description:
+      "Automate business workflows, repetitive tasks, customer support and lead management with practical AI-powered solutions.",
+    images: ["/tairanos-logo.png"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.tairanos.com/business-automation#webpage",
+      url: "https://www.tairanos.com/business-automation",
+      name: "Business Automation Services | Tairanos",
+      description:
+        "Automate business workflows, repetitive tasks, customer support and lead management with practical AI-powered business automation solutions from Tairanos.",
+      isPartOf: { "@id": "https://www.tairanos.com/#website" },
+      about: { "@id": "https://www.tairanos.com/business-automation#service" },
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.tairanos.com/business-automation#service",
+      name: "Business Automation Services",
+      serviceType: "Business Automation",
+      description:
+        "Business workflow automation, lead management, AI customer support, integrations and custom automation solutions.",
+      url: "https://www.tairanos.com/business-automation",
+      provider: { "@id": "https://www.tairanos.com/#organization" },
+      areaServed: "Worldwide",
+      audience: { "@type": "BusinessAudience", audienceType: "Businesses" },
+    },
+  ],
 };
 
 const solutions = [
@@ -94,6 +142,10 @@ const process = [
 export default function BusinessAutomationPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#0B1220] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Background glow */}
       <div className="pointer-events-none fixed left-[-180px] top-[180px] h-[420px] w-[420px] rounded-full bg-cyan-500/10 blur-[120px]" />
 

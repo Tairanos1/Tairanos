@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI Chatbot Development | Tairanos",
+  title: "AI Chatbot Development",
   description:
     "Build powerful AI chatbots for your business with Tairanos. Automate customer support, generate leads, answer questions and grow your business 24/7.",
   keywords: [
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Tairanos",
   ],
   alternates: {
-    canonical: "https://www.tairanos.com/ai-chatbot",
+    canonical: "/ai-chatbot",
   },
   openGraph: {
     title: "AI Chatbot Development | Tairanos",
@@ -23,7 +23,43 @@ export const metadata: Metadata = {
     url: "https://www.tairanos.com/ai-chatbot",
     siteName: "Tairanos",
     type: "website",
+    images: [{ url: "/tairanos-logo.png", alt: "Tairanos AI Chatbot Development" }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Chatbot Development | Tairanos",
+    description:
+      "AI-powered chatbots that automate customer support, generate leads and help businesses grow.",
+    images: ["/tairanos-logo.png"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.tairanos.com/ai-chatbot#webpage",
+      url: "https://www.tairanos.com/ai-chatbot",
+      name: "AI Chatbot Development | Tairanos",
+      description:
+        "Build powerful AI chatbots for your business with Tairanos. Automate customer support, generate leads, answer questions and grow your business 24/7.",
+      isPartOf: { "@id": "https://www.tairanos.com/#website" },
+      about: { "@id": "https://www.tairanos.com/ai-chatbot#service" },
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.tairanos.com/ai-chatbot#service",
+      name: "AI Chatbot Development",
+      serviceType: "AI Chatbot Development",
+      description:
+        "AI chatbots for customer support, lead generation and automated business communication.",
+      url: "https://www.tairanos.com/ai-chatbot",
+      provider: { "@id": "https://www.tairanos.com/#organization" },
+      areaServed: "Worldwide",
+      audience: { "@type": "BusinessAudience", audienceType: "Businesses" },
+    },
+  ],
 };
 
 const features = [
@@ -79,6 +115,10 @@ const useCases = [
 export default function AIChatbotPage() {
   return (
     <main className="min-h-screen bg-[#070d1a] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(14,190,218,0.14),transparent_35%),radial-gradient(circle_at_80%_30%,rgba(59,130,246,0.14),transparent_35%)]" />
