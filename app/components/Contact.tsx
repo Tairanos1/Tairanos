@@ -22,6 +22,8 @@ export default function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -30,28 +32,57 @@ export default function Contact() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+
+    setSubmitted(false);
+    setError("");
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const subject = encodeURIComponent(
-      isBangla
-        ? `Tairanos-এর জন্য নতুন Project Inquiry - ${formData.name}`
-        : `New Project Inquiry from ${formData.name}`
-    );
+    setLoading(true);
+    setSubmitted(false);
+    setError("");
 
-    const body = encodeURIComponent(
-      `${isBangla ? "নাম" : "Name"}: ${formData.name}
-${isBangla ? "ইমেইল" : "Email"}: ${formData.email}
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
 
-${isBangla ? "মেসেজ" : "Message"}:
-${formData.message}`
-    );
+      const result = await response.json();
 
-    window.location.href = `mailto:tairanos8@gmail.com?subject=${subject}&body=${body}`;
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || "Failed to send your message."
+        );
+      }
 
-    setSubmitted(true);
+      setSubmitted(true);
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (err) {
+      console.error("Contact form error:", err);
+
+      setError(
+        isBangla
+          ? "❌ মেসেজ পাঠানো যায়নি। কিছুক্ষণ পর আবার চেষ্টা করুন।"
+          : "❌ Unable to send your message. Please try again later."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -67,7 +98,6 @@ ${formData.message}`
       <div className="pointer-events-none absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6">
-
         {/* ================= HEADER ================= */}
 
         <div
@@ -114,7 +144,6 @@ ${formData.message}`
         {/* ================= MAIN CONTENT ================= */}
 
         <div className="mt-16 grid gap-10 lg:grid-cols-2">
-
           {/* ================= LEFT INFO ================= */}
 
           <div
@@ -129,7 +158,6 @@ ${formData.message}`
             "
             data-aos="fade-right"
           >
-
             <h3 className="text-2xl font-bold">
               {isBangla
                 ? "যোগাযোগের তথ্য"
@@ -142,7 +170,7 @@ ${formData.message}`
                 : "Contact us through any of the channels below at your convenience."}
             </p>
 
-            {/* Email */}
+            {/* ================= EMAIL ================= */}
 
             <a
               href="mailto:tairanos8@gmail.com"
@@ -178,7 +206,7 @@ ${formData.message}`
               </div>
             </a>
 
-            {/* WhatsApp */}
+            {/* ================= WHATSAPP ================= */}
 
             <a
               href="https://wa.me/8801341133374"
@@ -216,7 +244,7 @@ ${formData.message}`
               </div>
             </a>
 
-            {/* Facebook */}
+            {/* ================= FACEBOOK ================= */}
 
             <a
               href="https://www.facebook.com/share/1CdNaQ9wX4/"
@@ -254,7 +282,7 @@ ${formData.message}`
               </div>
             </a>
 
-            {/* Worldwide */}
+            {/* ================= WORLDWIDE ================= */}
 
             <div className="mt-8 flex items-center gap-3 text-sm text-gray-400">
               <FaGlobe className="text-cyan-400" />
@@ -265,7 +293,6 @@ ${formData.message}`
                   : "Serving Clients Worldwide"}
               </span>
             </div>
-
           </div>
 
           {/* ================= FORM ================= */}
@@ -282,7 +309,6 @@ ${formData.message}`
             "
             data-aos="fade-left"
           >
-
             <h3 className="text-2xl font-bold">
               {isBangla
                 ? "আপনার মেসেজ পাঠান"
@@ -299,8 +325,7 @@ ${formData.message}`
               onSubmit={handleSubmit}
               className="mt-8 space-y-5"
             >
-
-              {/* Name */}
+              {/* ================= NAME ================= */}
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -313,6 +338,7 @@ ${formData.message}`
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  disabled={loading}
                   placeholder={
                     isBangla
                       ? "আপনার নাম লিখুন"
@@ -332,11 +358,13 @@ ${formData.message}`
                     placeholder:text-gray-500
                     focus:border-cyan-500
                     focus:bg-white/[0.08]
+                    disabled:cursor-not-allowed
+                    disabled:opacity-60
                   "
                 />
               </div>
 
-              {/* Email */}
+              {/* ================= EMAIL ================= */}
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -351,6 +379,7 @@ ${formData.message}`
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  disabled={loading}
                   placeholder={
                     isBangla
                       ? "আপনার ইমেইল লিখুন"
@@ -370,11 +399,13 @@ ${formData.message}`
                     placeholder:text-gray-500
                     focus:border-cyan-500
                     focus:bg-white/[0.08]
+                    disabled:cursor-not-allowed
+                    disabled:opacity-60
                   "
                 />
               </div>
 
-              {/* Message */}
+              {/* ================= MESSAGE ================= */}
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -388,6 +419,7 @@ ${formData.message}`
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  disabled={loading}
                   rows={6}
                   placeholder={
                     isBangla
@@ -409,14 +441,17 @@ ${formData.message}`
                     placeholder:text-gray-500
                     focus:border-cyan-500
                     focus:bg-white/[0.08]
+                    disabled:cursor-not-allowed
+                    disabled:opacity-60
                   "
                 />
               </div>
 
-              {/* Submit */}
+              {/* ================= SUBMIT ================= */}
 
               <button
                 type="submit"
+                disabled={loading}
                 className="
                   inline-flex
                   w-full
@@ -435,29 +470,41 @@ ${formData.message}`
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-[0_0_30px_rgba(6,182,212,.30)]
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
+                  disabled:hover:translate-y-0
                 "
               >
                 <FaPaperPlane />
 
-                {isBangla
-                  ? "মেসেজ পাঠান"
-                  : "Send Message"}
+                {loading
+                  ? isBangla
+                    ? "পাঠানো হচ্ছে..."
+                    : "Sending..."
+                  : isBangla
+                    ? "মেসেজ পাঠান"
+                    : "Send Message"}
               </button>
 
-              {/* Success Message */}
+              {/* ================= SUCCESS ================= */}
 
               {submitted && (
                 <div className="rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-center text-sm text-green-400">
                   {isBangla
-                    ? "আপনার মেসেজ প্রস্তুত হয়েছে। Email app খুললে Send চাপুন।"
-                    : "Your message is ready. Click Send in your email app to complete it."}
+                    ? "✅ আপনার মেসেজ সফলভাবে পাঠানো হয়েছে। আমরা শীঘ্রই যোগাযোগ করব।"
+                    : "✅ Your message has been sent successfully. We will contact you soon."}
                 </div>
               )}
 
+              {/* ================= ERROR ================= */}
+
+              {error && (
+                <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-center text-sm text-red-400">
+                  {error}
+                </div>
+              )}
             </form>
-
           </div>
-
         </div>
 
         {/* ================= BOTTOM CTA ================= */}
@@ -478,7 +525,6 @@ ${formData.message}`
           "
           data-aos="fade-up"
         >
-
           <h3 className="text-2xl font-bold sm:text-3xl">
             {isBangla
               ? "আপনার আইডিয়া প্রস্তুত?"
@@ -519,9 +565,7 @@ ${formData.message}`
               ? "WhatsApp-এ যোগাযোগ করুন"
               : "Contact on WhatsApp"}
           </a>
-
         </div>
-
       </div>
     </section>
   );

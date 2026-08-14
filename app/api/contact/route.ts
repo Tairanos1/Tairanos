@@ -3,26 +3,21 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export async function POST(req: Request) {
   try {
-    const {
-      name,
-      email,
-      country,
-      service,
-      budget,
-      message,
-    } = await req.json();
+    const { name, email, message } = await req.json();
 
     // Basic validation
-    if (
-      !name ||
-      !email ||
-      !country ||
-      !service ||
-      !budget ||
-      !message
-    ) {
+    if (!name || !email || !message) {
       return NextResponse.json(
         {
           success: false,
@@ -34,20 +29,29 @@ export async function POST(req: Request) {
       );
     }
 
+    const safeName = escapeHtml(String(name));
+    const safeEmail = escapeHtml(String(email));
+    const safeMessage = escapeHtml(String(message));
+
     const data = await resend.emails.send({
       from: "Tairanos <onboarding@resend.dev>",
-
       to: ["tairanos8@gmail.com"],
+      replyTo: String(email),
 
-      replyTo: email,
-
-      subject: `🌍 New Tairanos Project Request — ${service}`,
+      subject: `🌍 New Tairanos Project Inquiry — ${String(name)}`,
 
       html: `
-        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #222;">
-
+        <div
+          style="
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #222;
+            max-width: 700px;
+            margin: 0 auto;
+          "
+        >
           <h2 style="color:#0891b2;">
-            🌍 New Tairanos Project Request
+            🌍 New Tairanos Project Inquiry
           </h2>
 
           <hr />
@@ -56,32 +60,15 @@ export async function POST(req: Request) {
 
           <p>
             <strong>Name:</strong>
-            ${name}
+            ${safeName}
           </p>
 
           <p>
             <strong>Email:</strong>
-            ${email}
+            ${safeEmail}
           </p>
 
-          <p>
-            <strong>Country:</strong>
-            ${country}
-          </p>
-
-          <h3>💼 Project Information</h3>
-
-          <p>
-            <strong>Service:</strong>
-            ${service}
-          </p>
-
-          <p>
-            <strong>Estimated Budget:</strong>
-            ${budget}
-          </p>
-
-          <h3>📝 Project Details</h3>
+          <h3>📝 Message</h3>
 
           <div
             style="
@@ -91,16 +78,14 @@ export async function POST(req: Request) {
               white-space:pre-wrap;
             "
           >
-            ${message}
+            ${safeMessage}
           </div>
 
           <hr />
 
           <p style="color:#666; font-size:13px;">
-            This message was submitted through the Tairanos
-            international project request form.
+            This message was submitted through the Tairanos website contact form.
           </p>
-
         </div>
       `,
     });
@@ -108,7 +93,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       success: true,
       message:
-        "✅ Your project request has been sent successfully! We will contact you soon.",
+        "✅ Your message has been sent successfully! We will contact you soon.",
       emailId: data.data?.id,
     });
   } catch (error) {
@@ -118,7 +103,7 @@ export async function POST(req: Request) {
       {
         success: false,
         message:
-          "❌ Failed to send your request. Please try again later.",
+          "❌ Failed to send your message. Please try again later.",
       },
       {
         status: 500,
