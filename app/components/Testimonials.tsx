@@ -125,7 +125,7 @@ export default function Testimonials() {
               {/* Description */}
 
               <p className="relative mt-6 leading-8 text-gray-300 italic">
-                "{item.review}"
+                    &quot;{item.review}&quot;
               </p>
 
               {/* Service */}

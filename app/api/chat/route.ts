@@ -44,9 +44,10 @@ TAIRANOS SERVICES
    - Custom AI systems designed around a business's specific requirements.
 
 PRICING
-- Starter: ৳9,999
-- Business: ৳24,999
-- Enterprise: Custom Pricing
+- Starter: $99+
+- Business: $299+
+- Professional: $599+
+- Enterprise: Custom
 
 IMPORTANT PRICING RULES
 - Give these prices exactly as listed above.
@@ -98,67 +99,35 @@ export async function POST(req: Request) {
     const { message } = await req.json();
 
     if (!message || typeof message !== "string") {
-      return NextResponse.json(
-        {
-          reply: "Please enter a message.",
-        },
-        {
-          status: 400,
-        }
-      );
+      return NextResponse.json({ reply: "Please enter a message." }, { status: 400 });
     }
 
     const cleanMessage = message.trim();
 
     if (!cleanMessage) {
-      return NextResponse.json(
-        {
-          reply: "Please enter a message.",
-        },
-        {
-          status: 400,
-        }
-      );
+      return NextResponse.json({ reply: "Please enter a message." }, { status: 400 });
     }
 
     if (!apiKey) {
       return NextResponse.json(
-        {
-          reply:
-            "AI configuration is missing. Please check GEMINI_API_KEY.",
-        },
-        {
-          status: 500,
-        }
+        { reply: "AI configuration is missing. Please check GEMINI_API_KEY." },
+        { status: 500 }
       );
     }
 
     const result = await ai.models.generateContent({
       model: "gemini-3.6-flash",
       contents: cleanMessage,
-      config: {
-        systemInstruction: SYSTEM_INSTRUCTION,
-      },
+      config: { systemInstruction: SYSTEM_INSTRUCTION },
     });
 
-    const reply =
-      result.text?.trim() ||
-      "Sorry, I could not generate a response.";
-
-    return NextResponse.json({
-      reply,
-    });
+    const reply = result.text?.trim() || "Sorry, I could not generate a response.";
+    return NextResponse.json({ reply });
   } catch (error) {
     console.error("Gemini API Error:", error);
-
     return NextResponse.json(
-      {
-        reply:
-          "Sorry, AI is temporarily unavailable. Please try again.",
-      },
-      {
-        status: 500,
-      }
+      { reply: "Sorry, AI is temporarily unavailable. Please try again." },
+      { status: 500 }
     );
   }
 }

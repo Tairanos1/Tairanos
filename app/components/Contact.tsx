@@ -22,7 +22,7 @@ export default function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (
@@ -32,58 +32,44 @@ export default function Contact() {
       ...formData,
       [e.target.name]: e.target.value,
     });
-
-    setSubmitted(false);
-    setError("");
+    if (error) setError("");
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    setLoading(true);
-    setSubmitted(false);
-    setError("");
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        }),
-      });
+    const data = await response.json();
 
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error(
-          result.message || "Failed to send your message."
-        );
-      }
-
-      setSubmitted(true);
-
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
-    } catch (err) {
-      console.error("Contact form error:", err);
-
-      setError(
-        isBangla
-          ? "❌ মেসেজ পাঠানো যায়নি। কিছুক্ষণ পর আবার চেষ্টা করুন।"
-          : "❌ Unable to send your message. Please try again later."
-      );
-    } finally {
-      setLoading(false);
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || "Failed to send message.");
     }
-  };
+
+    setSubmitted(true);
+
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
+  } catch (error) {
+    console.error(error);
+
+    alert(
+      isBangla
+        ? "মেসেজ পাঠানো যায়নি। কিছুক্ষণ পর আবার চেষ্টা করুন।"
+        : "Your message could not be sent. Please try again."
+    );
+  }
+};
 
   return (
     <section
@@ -98,6 +84,7 @@ export default function Contact() {
       <div className="pointer-events-none absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6">
+
         {/* ================= HEADER ================= */}
 
         <div
@@ -124,7 +111,7 @@ export default function Contact() {
               </>
             ) : (
               <>
-                Let's Build Something
+                Let&apos;s Build Something
                 <br />
 
                 <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
@@ -144,6 +131,7 @@ export default function Contact() {
         {/* ================= MAIN CONTENT ================= */}
 
         <div className="mt-16 grid gap-10 lg:grid-cols-2">
+
           {/* ================= LEFT INFO ================= */}
 
           <div
@@ -158,6 +146,7 @@ export default function Contact() {
             "
             data-aos="fade-right"
           >
+
             <h3 className="text-2xl font-bold">
               {isBangla
                 ? "যোগাযোগের তথ্য"
@@ -170,7 +159,7 @@ export default function Contact() {
                 : "Contact us through any of the channels below at your convenience."}
             </p>
 
-            {/* ================= EMAIL ================= */}
+            {/* Email */}
 
             <a
               href="mailto:tairanos8@gmail.com"
@@ -206,7 +195,7 @@ export default function Contact() {
               </div>
             </a>
 
-            {/* ================= WHATSAPP ================= */}
+            {/* WhatsApp */}
 
             <a
               href="https://wa.me/8801341133374"
@@ -244,7 +233,7 @@ export default function Contact() {
               </div>
             </a>
 
-            {/* ================= FACEBOOK ================= */}
+            {/* Facebook */}
 
             <a
               href="https://www.facebook.com/share/1CdNaQ9wX4/"
@@ -282,7 +271,7 @@ export default function Contact() {
               </div>
             </a>
 
-            {/* ================= WORLDWIDE ================= */}
+            {/* Worldwide */}
 
             <div className="mt-8 flex items-center gap-3 text-sm text-gray-400">
               <FaGlobe className="text-cyan-400" />
@@ -293,6 +282,7 @@ export default function Contact() {
                   : "Serving Clients Worldwide"}
               </span>
             </div>
+
           </div>
 
           {/* ================= FORM ================= */}
@@ -309,6 +299,7 @@ export default function Contact() {
             "
             data-aos="fade-left"
           >
+
             <h3 className="text-2xl font-bold">
               {isBangla
                 ? "আপনার মেসেজ পাঠান"
@@ -325,7 +316,8 @@ export default function Contact() {
               onSubmit={handleSubmit}
               className="mt-8 space-y-5"
             >
-              {/* ================= NAME ================= */}
+
+              {/* Name */}
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -338,7 +330,6 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  disabled={loading}
                   placeholder={
                     isBangla
                       ? "আপনার নাম লিখুন"
@@ -358,13 +349,11 @@ export default function Contact() {
                     placeholder:text-gray-500
                     focus:border-cyan-500
                     focus:bg-white/[0.08]
-                    disabled:cursor-not-allowed
-                    disabled:opacity-60
                   "
                 />
               </div>
 
-              {/* ================= EMAIL ================= */}
+              {/* Email */}
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -379,7 +368,6 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  disabled={loading}
                   placeholder={
                     isBangla
                       ? "আপনার ইমেইল লিখুন"
@@ -399,13 +387,11 @@ export default function Contact() {
                     placeholder:text-gray-500
                     focus:border-cyan-500
                     focus:bg-white/[0.08]
-                    disabled:cursor-not-allowed
-                    disabled:opacity-60
                   "
                 />
               </div>
 
-              {/* ================= MESSAGE ================= */}
+              {/* Message */}
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -419,7 +405,6 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  disabled={loading}
                   rows={6}
                   placeholder={
                     isBangla
@@ -441,17 +426,15 @@ export default function Contact() {
                     placeholder:text-gray-500
                     focus:border-cyan-500
                     focus:bg-white/[0.08]
-                    disabled:cursor-not-allowed
-                    disabled:opacity-60
                   "
                 />
               </div>
 
-              {/* ================= SUBMIT ================= */}
+              {/* Submit */}
 
               <button
                 type="submit"
-                disabled={loading}
+                disabled={submitting}
                 className="
                   inline-flex
                   w-full
@@ -470,14 +453,11 @@ export default function Contact() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-[0_0_30px_rgba(6,182,212,.30)]
-                  disabled:cursor-not-allowed
-                  disabled:opacity-60
-                  disabled:hover:translate-y-0
                 "
               >
                 <FaPaperPlane />
 
-                {loading
+                {submitting
                   ? isBangla
                     ? "পাঠানো হচ্ছে..."
                     : "Sending..."
@@ -486,25 +466,26 @@ export default function Contact() {
                     : "Send Message"}
               </button>
 
-              {/* ================= SUCCESS ================= */}
+              {/* Status Message */}
 
               {submitted && (
                 <div className="rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-center text-sm text-green-400">
                   {isBangla
-                    ? "✅ আপনার মেসেজ সফলভাবে পাঠানো হয়েছে। আমরা শীঘ্রই যোগাযোগ করব।"
-                    : "✅ Your message has been sent successfully. We will contact you soon."}
+                    ? "আপনার মেসেজ সফলভাবে পাঠানো হয়েছে। আমরা শিগগিরই যোগাযোগ করব।"
+                    : "Your message has been sent successfully. We will contact you soon."}
                 </div>
               )}
-
-              {/* ================= ERROR ================= */}
 
               {error && (
                 <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-center text-sm text-red-400">
                   {error}
                 </div>
               )}
+
             </form>
+
           </div>
+
         </div>
 
         {/* ================= BOTTOM CTA ================= */}
@@ -525,6 +506,7 @@ export default function Contact() {
           "
           data-aos="fade-up"
         >
+
           <h3 className="text-2xl font-bold sm:text-3xl">
             {isBangla
               ? "আপনার আইডিয়া প্রস্তুত?"
@@ -534,7 +516,7 @@ export default function Contact() {
           <p className="mx-auto mt-4 max-w-2xl leading-7 text-gray-300">
             {isBangla
               ? "আজই Tairanos-এর সাথে যোগাযোগ করুন এবং আপনার পরবর্তী digital project শুরু করুন।"
-              : "Contact Tairanos today and let's start building your next digital project."}
+              : "Contact Tairanos today and let&apos;s start building your next digital project."}
           </p>
 
           <a
@@ -565,7 +547,9 @@ export default function Contact() {
               ? "WhatsApp-এ যোগাযোগ করুন"
               : "Contact on WhatsApp"}
           </a>
+
         </div>
+
       </div>
     </section>
   );

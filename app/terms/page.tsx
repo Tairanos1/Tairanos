@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import Link from "next/link";
 export const metadata: Metadata = {
   title: "Terms & Conditions",
   description:
@@ -282,24 +282,24 @@ export default function TermsPage() {
         {/* Back */}
 
         <div className="mt-12 text-center">
-          <a
-            href="/"
-            className="
-              inline-flex
-              rounded-xl
-              bg-gradient-to-r
-              from-cyan-500
-              to-blue-600
-              px-7
-              py-3
-              font-semibold
-              text-white
-              transition
-              hover:scale-105
-            "
-          >
-            ← Back to Tairanos
-          </a>
+          <Link
+             href="/"
+             className="
+             inline-flex
+             rounded-xl
+             bg-gradient-to-r
+             from-cyan-500
+             to-blue-600
+             px-7
+             py-3
+             font-semibold
+             text-white
+             transition
+             hover:scale-105
+             "
+           >
+             ← Back to Tairanos
+          </Link>
         </div>
 
       </div>
