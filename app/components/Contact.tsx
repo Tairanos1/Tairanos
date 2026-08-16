@@ -201,7 +201,7 @@ export default function Contact() {
                 </p>
 
                 <p className="mt-1 font-semibold text-white">
-                  tairanos8@gmail.com
+                  hello@tairanos.com
                 </p>
               </div>
             </a>
