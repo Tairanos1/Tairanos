@@ -38,6 +38,10 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
 
+  setSubmitting(true);
+  setSubmitted(false);
+  setError("");
+
   try {
     const response = await fetch("/api/contact", {
       method: "POST",
@@ -61,13 +65,20 @@ export default function Contact() {
       message: "",
     });
   } catch (error) {
-    console.error(error);
+    console.error("Contact form error:", error);
 
-    alert(
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Failed to send message.";
+
+    setError(
       isBangla
-        ? "মেসেজ পাঠানো যায়নি। কিছুক্ষণ পর আবার চেষ্টা করুন।"
-        : "Your message could not be sent. Please try again."
+        ? `মেসেজ পাঠানো যায়নি। ${message}`
+        : `Your message could not be sent. ${message}`
     );
+  } finally {
+    setSubmitting(false);
   }
 };
 
@@ -162,7 +173,7 @@ export default function Contact() {
             {/* Email */}
 
             <a
-              href="mailto:tairanos8@gmail.com"
+              href="mailto:hello@tairanos.com"
               className="
                 mt-8
                 flex
