@@ -75,6 +75,11 @@ export default function Navbar() {
       bn: "পোর্টফোলিও",
     },
     {
+      href: "/templates",
+      en: "Templates",
+      bn: "টেমপ্লেট",
+    },
+    {
       href: "#pricing",
       en: "Pricing",
       bn: "প্রাইসিং",
